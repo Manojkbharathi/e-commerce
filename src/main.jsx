@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root, ErrorPage, SingleProduct, Products, SignIn } from './routes';
+import {
+  Root,
+  ErrorPage,
+  Watch,
+  Mobile,
+  WashingMachines,
+  Products,
+  SignIn,
+  Cart,
+} from './routes';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -10,17 +19,29 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: 'products',
+        path: '/',
         element: <Products />,
       },
       {
-        path: 'products/:productId',
-        element: <SingleProduct />,
+        path: 'productWatches',
+        element: <Watch />,
+      },
+      {
+        path: 'mobile',
+        element: <Mobile />,
+      },
+      {
+        path: 'washingMachine',
+        element: <WashingMachines />,
       },
 
       {
         path: 'signIn',
         element: <SignIn />,
+      },
+      {
+        path: 'cart',
+        element: <Cart />,
       },
     ],
   },

@@ -1,6 +1,19 @@
 import Root from './root';
 import ErrorPage from './errorPage';
-import SingleProduct from './singleProduct';
+import Watch from './watch';
+import Mobile from './mobile';
 import Products from './products';
 import SignIn from './signIn';
-export { Root, ErrorPage, SingleProduct, Products, SignIn };
+import Cart from './cart';
+import WashingMachines from './washingMachines';
+
+export {
+  Root,
+  ErrorPage,
+  Watch,
+  Mobile,
+  WashingMachines,
+  Products,
+  SignIn,
+  Cart,
+};

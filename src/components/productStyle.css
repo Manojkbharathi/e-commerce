@@ -1,0 +1,17 @@
+.ad-img {
+  width: 100vw;
+  height: 29vh;
+}
+.product-icon {
+  width: 11rem;
+  margin: 1rem 0;
+}
+.single-product {
+  display: flex;
+  flex-direction: column;
+  width: 5rem;
+}
+.all-products {
+  display: flex;
+  justify-content: space-evenly;
+}
