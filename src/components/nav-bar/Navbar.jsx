@@ -1,11 +1,25 @@
-import { Outlet, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../nav-bar/navbarStyle.css';
-import { AiOutlineSearch } from 'react-icons/ai';
+
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div>
       <div className='navbar'>
-        <input type='text' placeholder='search' />
+        <div className='search-bar'>
+          <input
+            type='text'
+            placeholder='Search'
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
         <Link to='/'>Home</Link>
         <Link to='/signIn'>SignIn</Link>
         <Link to='/cart'>

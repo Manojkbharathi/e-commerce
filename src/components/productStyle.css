@@ -1,6 +1,6 @@
 .ad-img {
   width: 100vw;
-  height: 29vh;
+  height: 38vh;
 }
 .product-icon {
   width: 11rem;
@@ -9,9 +9,22 @@
 .single-product {
   display: flex;
   flex-direction: column;
-  width: 5rem;
 }
 .all-products {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 3rem 15rem;
+  margin: 2rem;
+}
+.slider {
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  left: 2%;
+}
+.text {
+  display: none;
 }

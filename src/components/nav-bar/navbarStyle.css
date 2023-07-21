@@ -1,10 +1,11 @@
 .navbar {
-  background-color: rgb(35, 22, 219);
+  background-color: rgb(52, 52, 60);
   display: flex;
   justify-content: flex-end;
   padding: 1rem;
   gap: 1rem;
   align-items: center;
+  margin: 0;
 }
 
 .cart-icon {

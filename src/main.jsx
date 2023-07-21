@@ -8,8 +8,13 @@ import {
   Mobile,
   WashingMachines,
   Products,
+  Audio,
   SignIn,
   Cart,
+  Tv,
+  Camera,
+  Laptop,
+  Ac,
 } from './routes';
 const router = createBrowserRouter([
   {
@@ -34,7 +39,26 @@ const router = createBrowserRouter([
         path: 'washingMachine',
         element: <WashingMachines />,
       },
-
+      {
+        path: 'audio',
+        element: <Audio />,
+      },
+      {
+        path: 'tv',
+        element: <Tv />,
+      },
+      {
+        path: 'camera',
+        element: <Camera />,
+      },
+      {
+        path: 'laptop',
+        element: <Laptop />,
+      },
+      {
+        path: 'ac',
+        element: <Ac />,
+      },
       {
         path: 'signIn',
         element: <SignIn />,
