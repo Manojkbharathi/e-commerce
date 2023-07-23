@@ -7,6 +7,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+h2 {
+  text-transform: uppercase;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(15, 14, 14);
@@ -41,8 +45,6 @@ h4:hover {
   width: min-content;
   margin: 2rem;
   text-align: center;
-  border: solid 2px white;
-  border-radius: 10px;
 }
 .watch-container {
   display: flex;
@@ -51,5 +53,7 @@ h4:hover {
 .cart-btn {
   margin: 1rem;
   padding: 0.5rem 0;
-  
+}
+.name {
+  color: aqua;
 }

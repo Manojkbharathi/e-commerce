@@ -148,7 +148,7 @@ export const watchProducts = [
   },
 ];
 
-export const washingMachineProducts = [
+export const mobileProducts = [
   {
     id: 1,
     image:
@@ -197,5 +197,231 @@ export const washingMachineProducts = [
     text: 'apple',
     price: '₹41,999.00',
     details: 'Apple iPhone 11 (64GB, White)',
+  },
+];
+
+export const washingMachineProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1670592944/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/221776_0_nu8eoq.png?tr=w-360',
+    text: 'Whirlpool',
+    price: '₹17,320.00',
+    details: 'Whirlpool 7.5 kg 5 Star Fully Automatic Top Load Washing Machine',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683553708/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/257199_0_dfxdzm.png?tr=w-640',
+    text: 'Pulsator',
+    price: '₹7,320.00',
+    details:
+      'Croma 6.5 kg 5 Star Semi Automatic Washing Machine with Spiral Pulsator',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1661418308/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/246168_wlg7id.png?tr=w-640',
+    text: 'Pulsator',
+    price: '₹21,490.00',
+    details:
+      'Croma 6.5 kg 5 Star Semi Automatic Washing Machine with Spiral Pulsator',
+  },
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683553253/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/262782_0_l6ch7n.png?tr=w-400',
+    text: 'apWestinghouseple',
+    price: '₹17,320.00',
+    details:
+      'White Westinghouse 6 kg Semi Automatic Washing Machine With Turbo Pulsator',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1669197120/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/260605_0_airyza.png?tr=w-400',
+    text: 'lg',
+    price: '₹34,320.00',
+    details:
+      'LG 7 Kg 5 Star Inverter Fully Automatic Front Load Washing Machine',
+  },
+  {
+    id: 6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1670588931/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/240205_0_obspqa.png?tr=w-400',
+    text: 'bosch',
+    price: '₹47,900',
+    details: 'BOSCH 9 kg 5 Star Fully Automatic Front Load Washing Machine',
+  },
+];
+
+export const audioProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1675867167/Croma%20Assets/Entertainment/Speakers%20and%20Media%20Players/Images/223919_0_xrfmkf.png?tr=w-360',
+    text: 'panasonic',
+    price: '₹7,320.00',
+    details:
+      'panasonic 120W Soundbar with Remote (Surround Sound, 2.1 Channel, Black)',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689333879/Croma%20Assets/Entertainment/Home%20Theatres%20and%20Audio%20Systems/Images/273274_0_pht6um.png?tr=w-360',
+    text: 'panasonic',
+    price: '₹8,999.00',
+    details:
+      'Jack Martin 126W Bluetooth Home Theatre with Remote (Heavy Bass Output, 2.1 Channel, Black)',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689333853/Croma%20Assets/Entertainment/Home%20Theatres%20and%20Audio%20Systems/Images/273281_0_vguksi.png?tr=w-360',
+    text: 'Jack Martin',
+    price: '₹14,499.00',
+    details: 'Jack Martin JM X7 154W Bluetooth Home Theatre with Remote',
+  },
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1665442699/Croma%20Assets/Entertainment/Speakers%20and%20Media%20Players/Images/224037_0_idsddw.png?tr=w-360',
+    text: 'sony',
+    price: '₹17,990.00',
+    details:
+      'SONY HT-S20R 400W Bluetooth Soundbar with Remote (Dolby Digital, 5.1 Channel, Black)',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689155156/Croma%20Assets/Entertainment/Home%20Theatres%20and%20Audio%20Systems/Images/272730_0_ttmkzf.png?tr=w-400',
+    text: 'panasonic',
+    price: '₹37,990.00',
+    details:
+      'LG SC9S 400W Bluetooth Soundbar with Remote (Dolby Atmos, 3.1.2 Channel, Black)',
+  },
+  {
+    id: 6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1685017737/Croma%20Assets/Entertainment/Home%20Theatres%20and%20Audio%20Systems/Images/262355_0_gdlsyq.png?tr=w-400',
+    text: 'boat',
+    price: '₹9,420.00',
+    details:
+      'boAt Aavante Bar Aura 160W Bluetooth Soundbar with Remote (Signature Sound, 2.1 Channel, Black)',
+  },
+];
+
+export const tvProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1688462862/Croma%20Assets/Entertainment/Television/Images/274582_lxviqe.png?tr=w-360',
+    text: 'lg',
+    price: '₹₹30,490.00',
+    details:
+      'LG UQ75 108 cm (43 inch) 4K Ultra HD LED WebOS TV with Gen5 AI Processor 4K',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1688576702/Croma%20Assets/Entertainment/Television/Images/251311_0_qkrerl.png?tr=w-360',
+    text: 'one plus',
+    price: '₹29,999.00',
+    details:
+      'OnePlus Y1S Pro 109cm (43 Inch) 4K Ultra HD LED Android TV with Gamma Engine',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689154711/Croma%20Assets/Entertainment/Television/Images/273719_0_wpaugi.png?tr=w-360',
+    text: 'sony',
+    price: '₹85,490.00',
+    details:
+      'SONY X82L 138.8 cm (55 inch) 4K Ultra HD LED Google TV with Live Colour Technology',
+  },
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1680264987/252329_0_zqnpva.png?tr=w-360',
+    text: 'samsung',
+    price: '₹28,490.00',
+    details:
+      'SAMSUNG Crystal 4K 108 cm (43 inch) 4K Ultra HD LED Tizen TV (2021 model)',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1680244471/Croma%20Assets/Entertainment/Television/Images/259207_ej0hbk.png?tr=w-360',
+    text: 'mi',
+    price: '₹13,490.00',
+    details:
+      'Mi 5A 80 cm (32 inch) HD Ready LED Smart Android TV with Google Assistance (2022 model)',
+  },
+  {
+    id: 6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689749000/Croma%20Assets/Entertainment/Television/Images/241271_0_yetrdx.png?tr=w-360',
+    text: 'lg',
+    price: '₹13,990.00',
+    details:
+      'LG LM562 81.28 cm (32 inch) HD Ready LED Smart WebOS TV with Dolby Audio',
+  },
+];
+
+export const cameraProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1686892279/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/267967_0_hr8uwe.png?tr=w-400',
+    text: 'sony',
+    price: '₹85,490.00',
+    details:
+      'Canon EOS M50 Mark II 24.1MP Mirrorless Camera (15-45 mm Lens, 22.3 x 14.9 mm Sensor, 5 Axis Stabilisation)',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1686892403/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/246741_0_catoqi.png?tr=w-400',
+    text: 'olympus',
+    price: '₹71,119',
+    details:
+      'OLYMPUS OM-D E-M10 Mark IV 20.3MP Mirrorless Camera (14-42 mm Lens, 17.3 x 13 mm Sensor, Tiltable Screen)',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1688578391/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/240293_0_tjw8bl.png?tr=w-400',
+    text: 'nikon',
+    price: '₹84,995',
+    details:
+      'https://www.croma.com/nikon-z-fc-20-9mp-mirrorless-camera-body-only-15-7-x-23-5-mm-sensor-full-time-eye-detection-auto-focus-/p/240293',
+  },
+
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1659085963/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/259484_ut2ku2.png?tr=w-400',
+    text: 'canon',
+    price: '₹₹86,119',
+    details:
+      'Canon EOS R10 24.2MP Mirrorless Camera (18-45 mm Lens, 22.3 x 14.9 mm Sensor, Vari-Angle Touch Screen LCD)',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1686892632/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/244230_0_bvyoln.png?tr=w-400',
+    text: 'sony ',
+    price: '₹₹61,119',
+    details:
+      'SONY Alpha ZV-E10L 24.2MP Mirrorless Camera (16-50 mm Lens, 23.5 x 15.6 mm Sensor, Vari-Angle Touch Screen LCD)',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689057132/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/258098_nb3hg9.png?tr=w-400',
+    text: 'nikon',
+    price: '₹₹97,119',
+    details:
+      'Nikon Z30 Kit 20.9MP Mirrorless Camera (18-140 mm Lens, 23.5 x 15.7 mm Sensor, Dual Microphones)',
   },
 ];
