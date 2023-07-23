@@ -402,7 +402,7 @@ export const cameraProducts = [
     image:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1659085963/Croma%20Assets/Imaging/Camera%20and%20Camcorders/Images/259484_ut2ku2.png?tr=w-400',
     text: 'canon',
-    price: '₹₹86,119',
+    price: '₹86,119',
     details:
       'Canon EOS R10 24.2MP Mirrorless Camera (18-45 mm Lens, 22.3 x 14.9 mm Sensor, Vari-Angle Touch Screen LCD)',
   },
@@ -423,5 +423,119 @@ export const cameraProducts = [
     price: '₹₹97,119',
     details:
       'Nikon Z30 Kit 20.9MP Mirrorless Camera (18-140 mm Lens, 23.5 x 15.7 mm Sensor, Dual Microphones)',
+  },
+];
+
+export const laptopProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1664414767/Croma%20Assets/Computers%20Peripherals/Laptop/Images/248619_0_dn9w7i.png?tr=w-240',
+    text: 'hp',
+    price: '₹₹43,950.00',
+    details:
+      'HP 15s-eq2144AU AMD Ryzen 5 (15.6 inch, 8GB, 512GB, Windows 11, MS Office 2019, AMD Radeon Graphics, FHD Display, Natural Silver, 50M63PA)',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1664425037/Croma%20Assets/Computers%20Peripherals/Laptop/Images/256967_0_c0izmj.png?tr=w-360',
+    text: 'asus',
+    price: '₹₹44,999.0',
+    details:
+      'ASUS Vivobook Ryzen 5 (16 inches, 16GB, 512GB, Windows 11, MS Office 2021, 2K Display, AMD Radeon Graphics, Quiet Blue, M1603QA-MB511WS)',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1664419033/Croma%20Assets/Computers%20Peripherals/Laptop/Images/257390_0_uih5kd.png?tr=w-360',
+    text: 'Lenovo',
+    price: '₹38,990.00',
+    details:
+      'Lenovo IdeaPad 3 14ITL6 Intel Core i3 11th Gen (14 inch, 8GB, 512GB, Windows 11 Home, MS Office 2021, Intel UHD',
+  },
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1685969095/Croma%20Assets/Computers%20Peripherals/Laptop/Images/256605_li76nl.png?tr=w-640',
+    text: 'MacBook',
+    price: '₹127,090.00',
+    details:
+      'Apple MacBook Pro 2022 (M2, 13.3 Inch, 8GB, 256GB, macOS Monterey, Space Grey)',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1687575595/Croma%20Assets/Computers%20Peripherals/Laptop/Images/274213_qtrkyn.png?tr=w-400',
+    text: 'dell',
+    price: '₹52,399',
+    details:
+      'DELL Inspiron 5430 Intel Core i5 13th Gen (14 inch, 16GB, 1TB, Windows 11, MS Office 2021, Intel Iris Xe, FHD Plus Display, Platinum Silver, IN5430JNH1P001ORS1)',
+  },
+  {
+    id: 6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683555159/Croma%20Assets/Computers%20Peripherals/Laptop/Images/270183_0_btjqa6.png?tr=w-400',
+    text: 'samsung',
+    price: '₹₹77,999',
+    details:
+      'SAMSUNG Galaxy Book3 Intel Core i5 13th Gen (15.6 inch, 16GB, 512GB, Windows 11 Home, Intel Iris Xe, Full HD LED Display, Silver, NP750XFG-KB2IN)',
+  },
+];
+
+export const acProducts = [
+  {
+    id: 1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681446457/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/270260_0_oetbjg.png?tr=w-400',
+    text: 'samsung',
+    price: '₹₹36,999',
+    details:
+      'VOLTAS Vectra 4 in 1 Convertible 1.3 Ton 3 Star Inverter Split AC with Anti Dust Filter (2023 Model, Copper Condenser, 163V Vectra Pearl)',
+  },
+  {
+    id: 2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681447343/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/266817_0_heq0ve.png?tr=w-400',
+    text: 'Hisense',
+    price: '₹₹29,999',
+    details:
+      'Hisense Cooling Expert 5 in 1 Convertible 1.5 Ton 3 Star Inverter Split AC with Auto Cleanser (2023 Model, Copper Condenser, ATC503HIB)',
+  },
+  {
+    id: 3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1671800821/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/267022_ccpxlh.png?tr=w-400',
+    text: 'lg',
+    price: '₹₹29,999',
+    details:
+      'LG 6 in 1 Convertible 1.5 Ton 5 Star AI Dual Inverter Split AC with 4-Way Swing (2023 Model, Copper Condenser, RS-Q19ANZE)',
+  },
+  {
+    id: 4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1669623126/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/262685_0_qycbcq.png?tr=w-400',
+    text: 'lloyd',
+    price: '₹₹31,999',
+    details:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1669623126/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/262685_0_qycbcq.png?tr=w-400',
+  },
+  {
+    id: 5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681446615/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/268337_0_ub3kts.png?tr=w-400',
+    text: 'voltas',
+    price: '₹₹37,999',
+    details:
+      'VOLTAS Vertis 5 in 1 Convertible 1.5 Ton 5 Star Inverter Split AC with 4-Way Swing (2023 Model, Copper Condenser, 185V Vertis Emerald Marvel)',
+  },
+  {
+    id: 6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681449127/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/268951_0_uqydbk.png?tr=w-400',
+    text: 'blue star',
+    price: '₹₹27,999',
+    details:
+      'Blue Star 5 in 1 Convertible 1.5 Ton 5 Star Inverter Split AC with Self Diagnosis (2023 Model, Copper Condenser, IC518RNU',
   },
 ];

@@ -3,7 +3,7 @@
   height: 38vh;
 }
 .product-icon {
-  width: 11rem;
+  width: 25rem;
   margin: 1rem 0;
 }
 .single-product {
@@ -27,4 +27,8 @@
 }
 .text {
   display: none;
+}
+.product {
+  width: 11rem;
+  margin: 1rem 0;
 }

@@ -23,6 +23,19 @@ import {
 import '../components/productStyle.css';
 
 const Products = () => {
+  const [users, setUsers] = useState({ name: '', email: '', message: '' });
+
+  const { name, email, message } = users;
+
+  function handleOnchange(event) {
+    const value = event.target.value;
+    const key = event.target.name;
+    setUsers({ ...users, [key]: value });
+  }
+  function submitHandler() {
+    setUsers({ name: '', email: '', message: '' });
+  }
+
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (e) => {
@@ -82,7 +95,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='productWatches'>
-                    <img src={productImg} className='product-icon' />
+                    <img src={productImg} className='product' />
                   </Link>
                 </div>
               );
@@ -97,7 +110,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='mobile'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -112,7 +125,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='washingMachine'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -127,7 +140,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='audio'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -142,7 +155,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='tv'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -157,7 +170,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='camera'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                     <h4>camera</h4>
                   </Link>
                 </div>
@@ -173,7 +186,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='laptop'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -188,7 +201,7 @@ const Products = () => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='ac'>
-                    <img src={productImg} alt='' className='product-icon' />
+                    <img src={productImg} alt='' className='product' />
                   </Link>
                 </div>
               );
@@ -197,9 +210,39 @@ const Products = () => {
       </div>
 
       <footer className='footer'>
-        <h3>Contact us</h3>
-        <input type='text' placeholder='enter your mail' />
-        <h4>Social</h4>
+        <form
+          className='form'
+          action='https://formsubmit.co/manojbharathi00@gmail.com'
+          method='POST'
+          onChange={(event) => handleOnchange(event)}
+        >
+          <div>
+            <input
+              type='text'
+              placeholder='Your Name'
+              name='name'
+              onChange={(event) => handleOnchange(event)}
+              value={name}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type='email'
+              name='email'
+              value={email}
+              placeholder='Your mail id'
+              onChange={(event) => handleOnchange(event)}
+              required
+            />
+          </div>
+
+          <div>
+            <button className='btn-submit' type='submit'>
+              submit
+            </button>
+          </div>
+        </form>
         <div className='social-icons'>
           <AiFillInstagram />
           <AiOutlineFacebook />
