@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { Auth } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -23,6 +25,7 @@ import {
 import '../components/productStyle.css';
 
 const Products = () => {
+  useEffect(() => {});
   const [users, setUsers] = useState({ name: '', email: '', message: '' });
 
   const { name, email, message } = users;
@@ -65,7 +68,7 @@ const Products = () => {
           />
         </div>
         <Link to='/'>Home</Link>
-        <Link to='/signIn'>SignIn</Link>
+        <Link to='/signUp'>SignUp</Link>
         <Link to='/cart'>
           🛒 <span>0</span>
         </Link>
@@ -89,13 +92,14 @@ const Products = () => {
         <div>
           {separateItems
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='productWatches'>
                     <img src={productImg} className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -104,13 +108,14 @@ const Products = () => {
         <div>
           {mobile
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='mobile'>
                     <img src={productImg} alt='' className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -119,13 +124,14 @@ const Products = () => {
         <div className='wash'>
           {washingMachine
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='washingMachine'>
                     <img src={productImg} alt='' className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -134,13 +140,14 @@ const Products = () => {
         <div className='audio'>
           {audio
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='audio'>
                     <img src={productImg} alt='' className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -149,13 +156,14 @@ const Products = () => {
         <div className='tv'>
           {tv
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='tv'>
                     <img src={productImg} alt='' className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -164,14 +172,15 @@ const Products = () => {
         <div className='camera'>
           {camera
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='camera'>
                     <img src={productImg} alt='' className='product' />
                     <h4>camera</h4>
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -180,13 +189,14 @@ const Products = () => {
         <div className='laptop'>
           {laptop
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='laptop'>
                     <img src={productImg} alt='' className='product' />
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );
@@ -195,13 +205,15 @@ const Products = () => {
         <div className=''>
           {ac
             .filter((item) =>
-              item.productImg.toLowerCase().includes(searchQuery.toLowerCase())
+              item.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map(({ id, productImg }) => {
+            .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
                   <Link to='ac'>
                     <img src={productImg} alt='' className='product' />
+
+                    <p className='product-name'>{name}</p>
                   </Link>
                 </div>
               );

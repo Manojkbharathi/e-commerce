@@ -3,7 +3,7 @@ import ErrorPage from './errorPage';
 import Watch from './watch';
 import Mobile from './mobile';
 import Products from './products';
-import SignIn from './signIn';
+import SignUp from './signUp';
 import Cart from './cart';
 import WashingMachines from './washingMachines';
 import Audio from './audio';
@@ -11,6 +11,7 @@ import Tv from './tv';
 import Camera from './camera';
 import Laptop from './laptop';
 import Ac from './ac';
+import LogIn from './logIn';
 export {
   Root,
   ErrorPage,
@@ -19,10 +20,11 @@ export {
   WashingMachines,
   Products,
   Audio,
-  SignIn,
+  SignUp,
   Cart,
   Tv,
   Camera,
   Laptop,
   Ac,
+  LogIn,
 };

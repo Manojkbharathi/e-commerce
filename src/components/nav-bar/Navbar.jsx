@@ -21,7 +21,9 @@ const Navbar = () => {
           />
         </div>
         <Link to='/'>Home</Link>
-        <Link to='/signIn'>SignIn</Link>
+        <Link to='/signUp'>SignUp</Link>
+        <Link to='/logIn'>Log In</Link>
+
         <Link to='/cart'>
           🛒 <span>0</span>
         </Link>

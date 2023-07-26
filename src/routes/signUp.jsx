@@ -1,6 +1,7 @@
 import Form from '../components/form/form';
 import Navbar from '../components/nav-bar/Navbar';
-const SignIn = () => {
+
+const SignUp = () => {
   return (
     <div>
       <Navbar />
@@ -9,4 +10,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

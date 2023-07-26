@@ -9,12 +9,13 @@ import {
   WashingMachines,
   Products,
   Audio,
-  SignIn,
+  SignUp,
   Cart,
   Tv,
   Camera,
   Laptop,
   Ac,
+  LogIn,
 } from './routes';
 const router = createBrowserRouter([
   {
@@ -60,12 +61,16 @@ const router = createBrowserRouter([
         element: <Ac />,
       },
       {
-        path: 'signIn',
-        element: <SignIn />,
+        path: 'signUp',
+        element: <SignUp />,
       },
       {
         path: 'cart',
         element: <Cart />,
+      },
+      {
+        path: 'logIn',
+        element: <LogIn />,
       },
     ],
   },

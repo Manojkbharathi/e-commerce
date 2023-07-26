@@ -31,7 +31,7 @@ export const advertiseItem = [
 export const separateItems = [
   {
     id: 1,
-    text: 'watch',
+    name: 'watch',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683281228/Croma%20Assets/CMS/LP%20Page%20Banners/2023/HP%20Category%20Navigation/wearable_categoryicons_sl3n0l.png?tr=w-1024',
@@ -40,7 +40,7 @@ export const separateItems = [
 export const mobile = [
   {
     id: 1,
-    text: 'mobile',
+    name: 'mobile',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1676968095/Croma%20Assets/CMS/LP%20Page%20Banners/2023/01_HP_BUGS_LP_BUGS/FEB/21-02-2023/Category%20Navigation%20-%20Audio%20Split/CategoryNavigation_AudioSplit_Mobile_21Feb2023_y6hsfe.png?tr=w-1024',
@@ -49,7 +49,7 @@ export const mobile = [
 export const washingMachine = [
   {
     id: 1,
-    text: 'washing machine',
+    name: 'washing machine',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683281227/Croma%20Assets/CMS/LP%20Page%20Banners/2023/HP%20Category%20Navigation/washingmachine_categoryicons_ktcdeu.png?tr=w-1024',
@@ -59,7 +59,7 @@ export const washingMachine = [
 export const audio = [
   {
     id: 1,
-    text: 'audio',
+    name: 'audio',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1676968094/Croma%20Assets/CMS/LP%20Page%20Banners/2023/01_HP_BUGS_LP_BUGS/FEB/21-02-2023/Category%20Navigation%20-%20Audio%20Split/CategoryNavigation_AudioSplit_HT_SB_21Feb2023_rk8ohd.png?tr=w-1024',
@@ -68,7 +68,7 @@ export const audio = [
 export const tv = [
   {
     id: 1,
-    text: 'television',
+    name: 'television',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1676968095/Croma%20Assets/CMS/LP%20Page%20Banners/2023/01_HP_BUGS_LP_BUGS/FEB/21-02-2023/Category%20Navigation%20-%20Audio%20Split/CategoryNavigation_AudioSplit_TV_21Feb2023_repyuk.png?tr=w-1024',
@@ -77,7 +77,7 @@ export const tv = [
 export const camera = [
   {
     id: 1,
-    text: 'camera',
+    name: 'camera',
 
     productImg:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS84wMhmDmObpT0G3bUe_F5EmEfpKybv1hHqg&usqp=CAU',
@@ -87,7 +87,7 @@ export const camera = [
 export const laptop = [
   {
     id: 1,
-    text: 'laptop',
+    name: 'laptop',
 
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683281227/Croma%20Assets/CMS/LP%20Page%20Banners/2023/HP%20Category%20Navigation/laptop_categoryicons_nixzuv.png?tr=w-1024',
@@ -96,7 +96,7 @@ export const laptop = [
 export const ac = [
   {
     id: 1,
-    text: 'air conditioner',
+    name: 'air conditioner',
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1676968094/Croma%20Assets/CMS/LP%20Page%20Banners/2023/01_HP_BUGS_LP_BUGS/FEB/21-02-2023/Category%20Navigation%20-%20Audio%20Split/CategoryNavigation_AudioSplit_AC_21Feb2023_azyacw.png?tr=w-240',
   },

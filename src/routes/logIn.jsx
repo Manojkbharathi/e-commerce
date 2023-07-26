@@ -1,28 +1,29 @@
-import { useState } from 'react';
-import '../form/formStyle.css';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../utils/firebase';
+import React, { useState } from 'react';
+import Navbar from '../components/nav-bar/Navbar';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/firebase';
+import {} from 'react-router-dom';
 import { NavLink, useNavigate } from 'react-router-dom';
-const Form = () => {
+const LogIn = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const onSubmit = async (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const onLogin = async (e) => {
     e.preventDefault();
-    await createUserWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const user = userCredential.userCredential;
         setEmail('');
         setPassword('');
-        navigate('/logIn');
+        navigate('/');
       })
       .catch((err) => {
         console.log('an error', err.message);
       });
   };
-
   return (
-    <div className='input-container'>
+    <div>
+      <Navbar />
       <form className='sing-in-form'>
         {/* <div className='content'>
           <label className='name'>Name</label>
@@ -49,15 +50,12 @@ const Form = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type='submit' className='submit' onClick={onSubmit}>
-          SignUp
+        <button type='submit' className='submit' onClick={onLogin}>
+          Sign in
         </button>
       </form>
-      <h3>
-        Already have account<NavLink to='/logIn'> signIn</NavLink>
-      </h3>
     </div>
   );
 };
 
-export default Form;
+export default LogIn;

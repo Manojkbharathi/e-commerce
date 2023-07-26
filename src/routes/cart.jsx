@@ -1,10 +1,10 @@
 import Navbar from '../components/nav-bar/Navbar';
-
+import CartContext from '../context/cartCOntext';
 const Cart = () => {
   return (
     <div>
       <Navbar />
-      Cart
+      <CartContext />
     </div>
   );
 };
