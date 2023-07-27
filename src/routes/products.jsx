@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { Auth } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../components/footer.css';
+import { IoMdLogOut, IoMdContact } from 'react-icons/io';
 import {
   AiFillInstagram,
   AiOutlineFacebook,
@@ -25,7 +27,27 @@ import {
 import '../components/productStyle.css';
 
 const Products = () => {
-  useEffect(() => {});
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setUserName(uid);
+      } else {
+        console.log('user is logged out');
+      }
+    });
+  }, []);
+
+  const handleLogout = async () => {
+    signOut(auth)
+      .then(() => {
+        setUserName('Signed out successfully');
+        navigate('/logIn');
+      })
+      .catch((err) => console.log(err.message));
+  };
   const [users, setUsers] = useState({ name: '', email: '', message: '' });
 
   const { name, email, message } = users;
@@ -59,19 +81,27 @@ const Products = () => {
   return (
     <div className='home'>
       <div className='navbar'>
-        <div className='search-bar'>
-          <input
-            type='text'
-            placeholder='Search'
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
+        <div className='profile'>
+          <IoMdContact />
         </div>
-        <Link to='/'>Home</Link>
-        <Link to='/signUp'>SignUp</Link>
-        <Link to='/cart'>
-          🛒 <span>0</span>
-        </Link>
+        <div className='nav-content'>
+          <div className='search-bar'>
+            <input
+              type='text'
+              placeholder='Search'
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+          <Link to='/'>Home</Link>
+          <Link to='/signUp'>SignUp</Link>
+          <Link to='/cart'>
+            🛒 <span>0</span>
+          </Link>
+          <button className='btn' onClick={handleLogout}>
+            <IoMdLogOut />
+          </button>
+        </div>
       </div>
       <div className='slider'>
         <Slider {...settings}>
@@ -90,6 +120,7 @@ const Products = () => {
       </div>
       <div className='all-products'>
         <div>
+          {userName}
           {separateItems
             .filter((item) =>
               item.name.toLowerCase().includes(searchQuery.toLowerCase())

@@ -6,6 +6,19 @@
   width: 25rem;
   margin: 1rem 0;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  font-size: 2.75rem;
+  margin-left: 2rem;
+}
+.nav-content {
+  display: flex;
+  gap: 2.75rem;
+}
 .single-product {
   display: flex;
   flex-direction: column;
@@ -34,4 +47,10 @@
 }
 .product-name {
   display: none;
+}
+.btn {
+  background-color: transparent;
+  font-size: 2rem;
+  border: none;
+  color: white;
 }
