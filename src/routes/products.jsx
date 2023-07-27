@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { Link } from 'react-router-dom';
@@ -136,6 +137,7 @@ const Products = () => {
               );
             })}
         </div>
+
         <div>
           {mobile
             .filter((item) =>

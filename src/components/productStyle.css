@@ -1,6 +1,6 @@
 .ad-img {
   width: 100vw;
-  height: 38vh;
+  height: 52vh;
 }
 .product-icon {
   width: 25rem;
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 3rem 15rem;
+  gap: 4rem 14rem;
   margin: 2rem;
 }
 .slider {

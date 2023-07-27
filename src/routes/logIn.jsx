@@ -3,6 +3,9 @@ import Navbar from '../components/nav-bar/Navbar';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import {} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { IoMdLogOut, IoMdContact } from 'react-icons/io';
+
 import { NavLink, useNavigate } from 'react-router-dom';
 const LogIn = () => {
   const navigate = useNavigate();
@@ -23,13 +26,18 @@ const LogIn = () => {
   };
   return (
     <div>
-      <Navbar />
+      <div className='navbar'>
+        <div className='profile'>
+          <IoMdContact />
+        </div>
+        <div className='nav-content'>
+          <Link to='/signUp'>SignUp</Link>
+          <Link to='/cart'>
+            🛒 <span>0</span>
+          </Link>
+        </div>
+      </div>
       <form className='sing-in-form'>
-        {/* <div className='content'>
-          <label className='name'>Name</label>
-          <input type='text' id='name' placeholder='Your Name' required />
-        </div> */}
-
         <div className='content'>
           <label className='email'>e-mail</label>
           <input
