@@ -30,7 +30,6 @@ export const advertiseItem = [
 
 export const separateItems = [
   {
-    id: uuidv4(),
     name: 'watch',
 
     productImg:
@@ -39,7 +38,6 @@ export const separateItems = [
 ];
 export const mobile = [
   {
-    id: uuidv4(),
     name: 'mobile',
 
     productImg:
@@ -48,7 +46,6 @@ export const mobile = [
 ];
 export const washingMachine = [
   {
-    id: uuidv4(),
     name: 'washing machine',
 
     productImg:
@@ -58,7 +55,6 @@ export const washingMachine = [
 
 export const audio = [
   {
-    id: uuidv4(),
     name: 'audio',
 
     productImg:
@@ -67,7 +63,6 @@ export const audio = [
 ];
 export const tv = [
   {
-    id: uuidv4(),
     name: 'television',
 
     productImg:
@@ -76,7 +71,6 @@ export const tv = [
 ];
 export const camera = [
   {
-    id: uuidv4(),
     name: 'camera',
 
     productImg:
@@ -86,7 +80,6 @@ export const camera = [
 
 export const laptop = [
   {
-    id: uuidv4(),
     name: 'laptop',
 
     productImg:
@@ -95,7 +88,6 @@ export const laptop = [
 ];
 export const ac = [
   {
-    id: uuidv4(),
     name: 'air conditioner',
     productImg:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1676968094/Croma%20Assets/CMS/LP%20Page%20Banners/2023/01_HP_BUGS_LP_BUGS/FEB/21-02-2023/Category%20Navigation%20-%20Audio%20Split/CategoryNavigation_AudioSplit_AC_21Feb2023_azyacw.png?tr=w-240',
