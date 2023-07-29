@@ -6,7 +6,7 @@ const Mobile = () => {
   const { addToCart } = useCartGLobalContext();
 
   const handleClick = (item) => {
-    const newItem = { ...item, id: uuidv4() };
+    const newItem = { ...item };
     addToCart(newItem); // Add the clicked item to the cart using the context function
   };
 

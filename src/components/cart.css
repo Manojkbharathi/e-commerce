@@ -1,0 +1,14 @@
+.cart-items {
+  display: flex;
+}
+.cart-icon {
+  width: 18rem;
+}
+.desc {
+  width: 20rem;
+}
+
+.button-section {
+  display: flex;
+  gap: 1rem;
+}

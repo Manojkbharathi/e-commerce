@@ -1,7 +1,13 @@
 import React from 'react';
 import Navbar from '../components/nav-bar/Navbar';
 import { laptopProducts } from '../components/data';
+import { useCartGLobalContext } from '../context/context';
 const Laptop = () => {
+  const { addToCart } = useCartGLobalContext();
+  const handleClick = (item) => {
+    const newItem = { ...item };
+    addToCart(newItem);
+  };
   return (
     <div>
       <div>
@@ -16,7 +22,14 @@ const Laptop = () => {
                   <h2 className='name'>{text}</h2>
                   <h4>{price}</h4>
                   <p>{details}</p>
-                  <button className='cart-btn'>Add to cart</button>
+                  <button
+                    className='cart-btn'
+                    onClick={() =>
+                      handleClick({ image, text, details, price, id })
+                    }
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             );

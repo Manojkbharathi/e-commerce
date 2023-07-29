@@ -28,7 +28,7 @@ const Navbar = () => {
           <Link to='/signUp'>SignUp</Link>
           <Link to='/logIn'>Log In</Link>
           <Link to='/cart'>
-            🛒 <span>0</span>
+            🛒 <span className='cart-count'>0</span>
           </Link>
         </div>
       </div>
