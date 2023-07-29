@@ -1,6 +1,15 @@
 import Navbar from '../components/nav-bar/Navbar';
 import { mobileProducts } from '../components/data';
+import { useCartGLobalContext } from '../context/context';
+import { v4 as uuidv4 } from 'uuid';
 const Mobile = () => {
+  const { addToCart } = useCartGLobalContext();
+
+  const handleClick = (item) => {
+    const newItem = { ...item, id: uuidv4() };
+    addToCart(newItem); // Add the clicked item to the cart using the context function
+  };
+
   return (
     <div>
       <Navbar />
@@ -14,7 +23,14 @@ const Mobile = () => {
                 <h2 className='name'>{text}</h2>
                 <h4>{price}</h4>
                 <p>{details}</p>
-                <button className='cart-btn'>Add to cart</button>
+                <button
+                  className='cart-btn'
+                  onClick={() =>
+                    handleClick({ image, text, details, price, id })
+                  }
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           );
