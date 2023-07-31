@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { useCartGLobalContext } from '../context/context';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../components/footer.css';
 import { IoMdLogOut, IoMdContact } from 'react-icons/io';
+import { SiShopify } from 'react-icons/si';
 import {
   AiFillInstagram,
   AiOutlineFacebook,
@@ -78,12 +79,14 @@ const Products = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
   };
+  const { totalQuantity } = useCartGLobalContext();
 
   return (
     <div className='home'>
       <div className='navbar'>
         <div className='profile'>
-          <IoMdContact />
+          <p>e-shop</p>
+          <span className='logo'>{<SiShopify />}</span>
         </div>
         <div className='nav-content'>
           <div className='search-bar'>
@@ -97,7 +100,7 @@ const Products = () => {
           <Link to='/'>Home</Link>
           <Link to='/signUp'>SignUp</Link>
           <Link to='/cart'>
-            🛒 <span>0</span>
+            🛒 <span className='cart-count'>{totalQuantity}</span>
           </Link>
           <button className='btn' onClick={handleLogout}>
             <IoMdLogOut />

@@ -12,8 +12,15 @@
 }
 
 .profile {
+  display: flex;
   font-size: 2.75rem;
   margin-left: 2rem;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: yellow;
+}
+.logo {
+  color: white;
 }
 .nav-content {
   display: flex;
@@ -53,4 +60,14 @@
   font-size: 2rem;
   border: none;
   color: white;
+}
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+}
+.btn-submit {
+  padding: 0.5rem 1rem;
+  background-color: aqua;
+  border-radius: 20px;
 }

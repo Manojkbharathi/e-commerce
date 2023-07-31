@@ -17,16 +17,20 @@ const Watch = () => {
       <Navbar />
 
       <div className='watch-container'>
-        {watchProducts.map(({ image, text, details, price, id }) => {
+        {watchProducts.map(({ image, text, details, price, id, quantity }) => {
           return (
             <div className='individual-item' key={id}>
               <img src={image} alt='' className='product-icon' />
               <h2 className='name'>{text}</h2>
-              <h4>{price}</h4>
+              <h4>
+                ₹<span>{price}</span>
+              </h4>
               <p>{details}</p>
               <button
                 className='cart-btn'
-                onClick={() => handleClick({ image, text, details, price, id })}
+                onClick={() =>
+                  handleClick({ image, text, details, price, id, quantity })
+                }
               >
                 Add to cart
               </button>

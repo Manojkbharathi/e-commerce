@@ -1,7 +1,6 @@
 import Navbar from '../components/nav-bar/Navbar';
 import { mobileProducts } from '../components/data';
 import { useCartGLobalContext } from '../context/context';
-import { v4 as uuidv4 } from 'uuid';
 const Mobile = () => {
   const { addToCart } = useCartGLobalContext();
 
@@ -15,7 +14,7 @@ const Mobile = () => {
       <Navbar />
 
       <div className='watch-container'>
-        {mobileProducts.map(({ image, text, details, price, id }) => {
+        {mobileProducts.map(({ image, text, details, price, id, quantity }) => {
           return (
             <div className='individual-item' key={id}>
               <img src={image} alt='' className='product-icon' />
@@ -26,7 +25,7 @@ const Mobile = () => {
                 <button
                   className='cart-btn'
                   onClick={() =>
-                    handleClick({ image, text, details, price, id })
+                    handleClick({ image, text, details, price, id, quantity })
                   }
                 >
                   Add to cart

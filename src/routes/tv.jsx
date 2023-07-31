@@ -14,7 +14,7 @@ const Tv = () => {
       <Navbar />
       <div>
         <div className='watch-container'>
-          {tvProducts.map(({ image, text, details, price, id }) => {
+          {tvProducts.map(({ image, text, details, price, id, quantity }) => {
             return (
               <div className='individual-item' key={id}>
                 <img src={image} alt='' className='product-icon' />
@@ -25,7 +25,7 @@ const Tv = () => {
                   <button
                     className='cart-btn'
                     onClick={() =>
-                      handleClick({ image, text, details, price, id })
+                      handleClick({ image, text, details, price, id, quantity })
                     }
                   >
                     Add to cart
