@@ -11,6 +11,18 @@ const Ac = () => {
   return (
     <div>
       <Navbar />
+      <div className=' product-description'>
+        <img
+          className='head-img'
+          src='https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1684576071/Croma%20Assets/CMS/PCP/Air%20Conditionr/May%202023/desktop/MAIN%20BANNER/PCP_AC_NC_17may2022_pwvkiv.png?tr=w-2048'
+          alt=''
+        />
+        <h3 className='img-desc'>
+          Whether you live in a small apartment or a palatial bungalow, an Air
+          Conditioner makes your life easier. No matter your budget or room
+          size, you’ll always find the right type of AC for you at Croma.
+        </h3>
+      </div>
       <div>
         <div className='watch-container'>
           {acProducts.map(({ image, text, details, price, id, quantity }) => {

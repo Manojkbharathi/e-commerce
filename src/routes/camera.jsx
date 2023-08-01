@@ -13,6 +13,20 @@ const Tv = () => {
     <div>
       {' '}
       <Navbar />
+      <div className=' product-description'>
+        <img
+          className='head-img'
+          src='https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1684506681/Croma%20Assets/CMS/PCP/Camara%20PCP%20desktop/PCP_Imaging_16may2023_zkxkhz.png?tr=w-2048'
+          alt=''
+        />
+        <h3 className='img-desc'>
+          Whether you’re on an exotic wildlife safari, skydiving from a plane,
+          filming your friend’s wedding, or just vlogging about your travels,
+          your smartphone will never hold a candle to the right camera. No
+          matter what you want to shoot, there’ always a camera for you at
+          Croma.
+        </h3>
+      </div>
       <div>
         <div className='watch-container'>
           {cameraProducts.map(

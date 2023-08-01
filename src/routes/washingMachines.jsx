@@ -13,6 +13,19 @@ const WashingMachines = () => {
   return (
     <div>
       <Navbar />
+      <div className=' product-description'>
+        <img
+          className='head-img'
+          src='https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1687777519/Croma%20Assets/CMS/PCP/June%20-2023/26-06-2023/desktop/main%20banner/PCP_WM_26june2023_aytvbo.png?tr=w-2048'
+          alt=''
+        />
+        <h3 className='img-desc'>
+          Whether it’s pouring outside or it’s winter that’s keeping your
+          clothes from drying, a washing machine makes your life easier in all
+          seasons. No matter your budget, you’ll always find the right type of
+          washing machine for you at Croma.
+        </h3>
+      </div>
       <div>
         <div className='watch-container'>
           {washingMachineProducts.map(

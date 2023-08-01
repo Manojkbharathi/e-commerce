@@ -105,6 +105,9 @@ const Products = () => {
           <button className='btn' onClick={handleLogout}>
             <IoMdLogOut />
           </button>
+          <h3>
+            user-Id: <span>{userName}</span>
+          </h3>
         </div>
       </div>
       <div className='slider'>
@@ -124,7 +127,6 @@ const Products = () => {
       </div>
       <div className='all-products'>
         <div>
-          {userName}
           {separateItems
             .filter((item) =>
               item.name.toLowerCase().includes(searchQuery.toLowerCase())

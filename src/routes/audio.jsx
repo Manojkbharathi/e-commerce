@@ -12,6 +12,19 @@ const audio = () => {
   return (
     <div>
       <Navbar />
+      <div className=' product-description'>
+        <img
+          className='head-img'
+          src='https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1684506066/Croma%20Assets/CMS/CAtegory/C44%20Home%20Theatre%20Soundbar/HT%20soundbar%20PCP/desktop/main%20banners/PCP_HT_sounbars_15may2023_spjqjw.png?tr=w-2048'
+          alt=''
+        />
+        <h3 className='img-desc'>
+          As TVs get slimmer, Soundbars and Home Theatre Systems are getting
+          more popular than ever before. Even the most basic of Soundbars and
+          Home Theatre Systems can take your television viewing to a new level.
+          Turns out, we have a whole wide range at Croma for you to pick from.
+        </h3>
+      </div>
       <div>
         <div className='watch-container'>
           {audioProducts.map(

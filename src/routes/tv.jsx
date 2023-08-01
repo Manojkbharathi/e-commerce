@@ -10,8 +10,21 @@ const Tv = () => {
   };
   return (
     <div>
-      {' '}
       <Navbar />
+      <div className=' product-description'>
+        <img
+          className='head-img'
+          src='https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1684312434/Croma%20Assets/CMS/LP%20Page%20Banners/PCP_TV_NC_15may2023_uv2e0k.png?tr=w-2048'
+          alt=''
+        />
+        <h3 className='img-desc'>
+          Streaming services have made it possible to watch your favourite shows
+          and live events on any screen you desire. But every so often you need
+          a screen large enough so you can sink into your sofa or curl up in bed
+          and watch your beloved stories come to life. It doesn't matter what
+          your lifestyle is, there is always a TV for you at Croma.
+        </h3>
+      </div>
       <div>
         <div className='watch-container'>
           {tvProducts.map(({ image, text, details, price, id, quantity }) => {

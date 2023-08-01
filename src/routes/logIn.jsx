@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import {} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { IoMdLogOut, IoMdContact } from 'react-icons/io';
+import { SiShopify } from 'react-icons/si';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 const LogIn = () => {
@@ -28,7 +28,8 @@ const LogIn = () => {
     <div>
       <div className='navbar'>
         <div className='profile'>
-          <IoMdContact />
+          <p>e-shop</p>
+          <span className='logo'>{<SiShopify />}</span>
         </div>
         <div className='nav-content'>
           <Link to='/signUp'>SignUp</Link>

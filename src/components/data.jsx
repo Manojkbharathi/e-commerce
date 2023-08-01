@@ -80,7 +80,7 @@ export const camera = [
     id: uuidv4(),
 
     productImg:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS84wMhmDmObpT0G3bUe_F5EmEfpKybv1hHqg&usqp=CAU',
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1690521345/Croma%20Assets/CMS/Category%20icon/CategoryNavigation_AudioSplit_Cameras_21Feb2023_fxbmtt.png?tr=w-1024',
   },
 ];
 
@@ -106,7 +106,8 @@ export const ac = [
 export const watchProducts = [
   {
     id: uuidv4(),
-    image: img1,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689156793/Croma%20Assets/Communication/Wearable%20Devices/Images/273178_0_neinhy.png?tr=w-480',
     text: 'noise',
     price: 2499.0,
     details: 'noise NoiseFit Force Smartwatch with Bluetooth Calling ',
@@ -114,7 +115,8 @@ export const watchProducts = [
   },
   {
     id: uuidv4(),
-    image: img2,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1685021735/Croma%20Assets/Communication/Wearable%20Devices/Images/270830_0_uotpk9.png?tr=w-480',
     text: 'Fire-Boltt ',
     price: 3499.0,
     details: 'Fire-Boltt Blizzard BSW087 Smartwatch with Bluetooth Calling',
@@ -122,7 +124,8 @@ export const watchProducts = [
   },
   {
     id: uuidv4(),
-    image: img3,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1690272526/Croma%20Assets/Wearable/Wearable%20Devices/Images/273598_clmdun.png?tr=w-480',
     text: 'bolt2',
     price: 1799.0,
     details: 'FIRE-BOLTT Shark Smartwatch with Bluetooth Calling',
@@ -130,7 +133,8 @@ export const watchProducts = [
   },
   {
     id: uuidv4(),
-    image: img4,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689155885/Croma%20Assets/Communication/Wearable%20Devices/Images/273524_0_oh8lhw.png?tr=w-640',
     text: 'apple watch',
     price: 55400.0,
     details: 'Apple Watch Series 8 GPS + Cellular with Sports Band',
@@ -138,7 +142,9 @@ export const watchProducts = [
   },
   {
     id: uuidv4(),
-    image: img5,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1689156317/Croma%20Assets/Communication/Wearable%20Devices/Images/273194_0_o4tzju.png?tr=w-400',
+
     text: 'timewere',
     price: 899,
     details:
@@ -147,10 +153,11 @@ export const watchProducts = [
   },
   {
     id: uuidv4(),
-    image: img6,
+    image:
+      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1690207608/Croma%20Assets/Communication/Wearable%20Devices/Images/274429_0_yr9bse.png?tr=w-480',
     text: 'fire',
     price: 1888,
-    details: '₹3,499.00',
+    details: 'Fire-bolt smart watch with metal straps & bluetooth calling',
 
     quantity: 1,
   },
@@ -565,7 +572,7 @@ export const acProducts = [
     text: 'lloyd',
     price: 31999,
     details:
-      'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1669623126/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/262685_0_qycbcq.png?tr=w-400',
+      'VOLTAS Vertis 5 in 1 Convertible 1.5 Ton 5 Star Inverter Split AC with 4-Way Swing (2023 Model, Copper Condenser, 185V Vertis Emerald Marvel)',
     quantity: 1,
   },
   {
