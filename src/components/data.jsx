@@ -30,7 +30,7 @@ export const advertiseItem = [
 
 export const separateItems = [
   {
-    name: 'watch',
+    name: 'Wearables',
     id: uuidv4(),
 
     productImg:
@@ -58,7 +58,7 @@ export const washingMachine = [
 
 export const audio = [
   {
-    name: 'audio',
+    name: 'Home theater & sound bars',
     id: uuidv4(),
 
     productImg:

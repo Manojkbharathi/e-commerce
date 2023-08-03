@@ -46,14 +46,16 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <section className='cart-footer'>
-          <button className='clear-btn' onClick={() => clearCart()}>
-            Clear cart
-          </button>
-          <h1 className='total'>
-            Total:<span> ₹{`${totalPrice.toFixed(2)}`}</span>
-          </h1>
-        </section>
+        {cart.length > 0 && (
+          <section className='cart-footer'>
+            <button className='clear-btn' onClick={() => clearCart()}>
+              Clear cart
+            </button>
+            <h1 className='total'>
+              Total:<span> ₹{`${totalPrice.toFixed(2)}`}</span>
+            </h1>
+          </section>
+        )}
       </div>
     </div>
   );

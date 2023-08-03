@@ -17,18 +17,13 @@ const Form = () => {
         navigate('/logIn');
       })
       .catch((err) => {
-        console.log('an error', err.message);
+        alert('an error', err.message);
       });
   };
 
   return (
     <div className='input-container'>
       <form className='sing-in-form'>
-        {/* <div className='content'>
-          <label className='name'>Name</label>
-          <input type='text' id='name' placeholder='Your Name' required />
-        </div> */}
-
         <div className='content'>
           <label className='email'>e-mail</label>
           <input

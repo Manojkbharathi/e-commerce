@@ -24,14 +24,6 @@ const Navbar = () => {
         </Link>
         <div className='profile'></div>
         <div className='nav-content'>
-          <div className='search-bar'>
-            <input
-              type='text'
-              placeholder='Search'
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </div>
           <Link to='/'>Home</Link>
           <Link to='/signUp'>SignUp</Link>
           <Link to='/logIn'>Log In</Link>

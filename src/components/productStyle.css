@@ -136,3 +136,9 @@
 .name {
   color: aqua;
 }
+.s-icons {
+  font-size: 3rem;
+}
+.s-icons:hover {
+  color: red;
+}

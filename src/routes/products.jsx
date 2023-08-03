@@ -294,9 +294,24 @@ const Products = () => {
           </div>
         </form>
         <div className='social-icons'>
-          <AiFillInstagram />
-          <AiOutlineFacebook />
-          <AiOutlineTwitter />
+          <a
+            className='s-icons'
+            href='https://silver-platypus-c72db6.netlify.app'
+          >
+            <AiFillInstagram />
+          </a>
+          <a
+            className='s-icons'
+            href='https://silver-platypus-c72db6.netlify.app'
+          >
+            <AiOutlineFacebook />
+          </a>
+          <a
+            className='s-icons'
+            href='https://silver-platypus-c72db6.netlify.app'
+          >
+            <AiOutlineTwitter />
+          </a>
         </div>
       </footer>
     </div>
