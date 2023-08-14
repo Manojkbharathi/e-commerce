@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: '/productWatches',
+        path: 'productWatches',
         element: <Watch />,
       },
       {

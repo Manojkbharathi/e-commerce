@@ -15,14 +15,15 @@ const Navbar = ({ updateSearchQuery }) => {
   const handleSearchChange = (e) => {
     updateSearchQuery(e.target.value);
   };
-  const handleLogout = async () => {
+  const logout = async () => {
     signOut(auth)
       .then(() => {
         navigate('/');
+
         localStorage.clear();
         window.location.reload();
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => console.log('error'));
   };
 
   return (
@@ -49,7 +50,7 @@ const Navbar = ({ updateSearchQuery }) => {
           <Link to='/cart'>
             🛒 <span className='cart-count'>{totalQuantity}</span>
           </Link>
-          <button className='btn' onClick={handleLogout}>
+          <button className='btn' onClick={logout}>
             <IoMdLogOut />
           </button>
         </div>

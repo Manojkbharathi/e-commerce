@@ -1,9 +1,8 @@
-import React from 'react';
-import Form from '../components/form/Form';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { auth, provider } from '../utils/firebase';
-import { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import '../index.css';
 const SignUp = () => {
   const navigate = useNavigate();
@@ -58,9 +57,17 @@ const SignUp = () => {
           <button type='submit' className='button'>
             signUp
           </button>
+
           {error && <span>Wrong email or password</span>}
         </form>
       </div>
+      <button className='btn' onClick={handleCLick}>
+        SignIn with Google
+      </button>
+
+      <button className='btn' onClick={() => navigate('/logIn')}>
+        Already have Account Log in
+      </button>
     </div>
   );
 };

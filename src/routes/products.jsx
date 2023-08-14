@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useCartGLobalContext } from '../context/context';
-
+import { onAuthStateChanged } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -34,7 +35,16 @@ const Products = () => {
   const [users, setUsers] = useState({ name: '', email: '', message: '' });
 
   const { name, email, message } = users;
-
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setId(uid);
+      } else {
+        navigate('/logIn');
+      }
+    });
+  }, [navigate]);
   function handleOnchange(event) {
     const value = event.target.value;
     const key = event.target.name;
