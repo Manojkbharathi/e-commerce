@@ -1,4 +1,3 @@
-import Root from './root';
 import ErrorPage from './errorPage';
 import Watch from './watch';
 import Mobile from './mobile';
@@ -13,7 +12,6 @@ import Laptop from './laptop';
 import Ac from './ac';
 import LogIn from './logIn';
 export {
-  Root,
   ErrorPage,
   Watch,
   Mobile,

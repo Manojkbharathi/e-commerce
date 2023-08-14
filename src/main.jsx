@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root.jsx';
 import { CartProvider } from './context/context';
 import {
-  Root,
   ErrorPage,
   Watch,
   Mobile,
@@ -18,7 +17,7 @@ import {
   Laptop,
   Ac,
   LogIn,
-} from './routes';
+} from './routes/index.js';
 const router = createBrowserRouter([
   {
     path: '/',
