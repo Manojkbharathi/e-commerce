@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/nav-bar/Navbar';
 import { laptopProducts } from '../components/data';
 import { useCartGLobalContext } from '../context/context';
@@ -8,10 +8,11 @@ const Laptop = () => {
     const newItem = { ...item };
     addToCart(newItem);
   };
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar updateSearchQuery={setSearchQuery} />
         <div className=' product-description'>
           <img
             className='head-img'
@@ -26,8 +27,11 @@ const Laptop = () => {
           </h3>
         </div>
         <div className='watch-container'>
-          {laptopProducts.map(
-            ({ image, text, details, price, id, quantity }) => {
+          {laptopProducts
+            .filter((item) =>
+              item.text.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map(({ image, text, details, price, id, quantity }) => {
               return (
                 <div className='individual-item' key={id}>
                   <img src={image} alt='' className='product-icon' />
@@ -53,8 +57,7 @@ const Laptop = () => {
                   </div>
                 </div>
               );
-            }
-          )}
+            })}
         </div>
       </div>
     </div>

@@ -117,7 +117,7 @@ export const watchProducts = [
     id: uuidv4(),
     image:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1685021735/Croma%20Assets/Communication/Wearable%20Devices/Images/270830_0_uotpk9.png?tr=w-480',
-    text: 'Fire-Boltt ',
+    text: 'Fire Boltt ',
     price: 3499.0,
     details: 'Fire-Boltt Blizzard BSW087 Smartwatch with Bluetooth Calling',
     quantity: 1,
@@ -126,7 +126,7 @@ export const watchProducts = [
     id: uuidv4(),
     image:
       'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1690272526/Croma%20Assets/Wearable/Wearable%20Devices/Images/273598_clmdun.png?tr=w-480',
-    text: 'bolt2',
+    text: 'Bolt2',
     price: 1799.0,
     details: 'FIRE-BOLTT Shark Smartwatch with Bluetooth Calling',
     quantity: 1,

@@ -18,7 +18,7 @@ const LogIn = () => {
         const user = userCredential.userCredential;
         setEmail('');
         setPassword('');
-        navigate('/');
+        navigate('/products');
       })
       .catch((err) => {
         console.log('an error', err.message);
@@ -26,19 +26,7 @@ const LogIn = () => {
   };
   return (
     <div>
-      <div className='navbar'>
-        <div className='profile'>
-          <p>e-shop</p>
-          <span className='logo'>{<SiShopify />}</span>
-        </div>
-        <div className='nav-content'>
-          <Link to='/signUp'>SignUp</Link>
-          <Link to='/cart'>
-            🛒 <span>0</span>
-          </Link>
-        </div>
-      </div>
-      <form className='sing-in-form'>
+      <form className='sing-in-form' onSubmit={onLogin}>
         <div className='content'>
           <label className='email'>e-mail</label>
           <input
@@ -59,7 +47,7 @@ const LogIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type='submit' className='submit' onClick={onLogin}>
+        <button type='submit' className='submit'>
           Sign in
         </button>
       </form>

@@ -3,15 +3,18 @@ import { audioProducts } from '../components/data';
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 const audio = () => {
   const { addToCart } = useCartGLobalContext();
   const handleClick = (item) => {
     const newItem = { ...item, id: uuidv4 };
     addToCart(newItem);
   };
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div>
-      <Navbar />
+      <Navbar updateSearchQuery={setSearchQuery} />
       <div className=' product-description'>
         <img
           className='head-img'
@@ -27,8 +30,11 @@ const audio = () => {
       </div>
       <div>
         <div className='watch-container'>
-          {audioProducts.map(
-            ({ image, text, details, price, id, quantity }) => {
+          {audioProducts
+            .filter((item) =>
+              item.text.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map(({ image, text, details, price, id, quantity }) => {
               return (
                 <div className='individual-item' key={id}>
                   <img src={image} alt='' className='product-icon' />
@@ -54,8 +60,7 @@ const audio = () => {
                   </div>
                 </div>
               );
-            }
-          )}
+            })}
         </div>
       </div>
     </div>

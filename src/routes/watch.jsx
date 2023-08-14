@@ -11,10 +11,10 @@ const Watch = () => {
     const newItem = { ...item };
     addToCart(newItem); // Add the clicked item to the cart using the context function
   };
-
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div>
-      <Navbar />
+      <Navbar updateSearchQuery={setSearchQuery} />
 
       <div className='watch-container'>
         <div className=' product-description'>
@@ -32,33 +32,37 @@ const Watch = () => {
             Croma has it all covered under one roof.
           </h3>
         </div>
-        {watchProducts.map(({ image, text, details, price, id, quantity }) => {
-          return (
-            <div className='individual-item' key={id}>
-              <img src={image} alt='' className='product-icon' />
-              <div className='details'>
-                <h2 className='name'>{text}</h2>
-                <h4>₹{price}</h4>
-                <p>{details}</p>
-                <button
-                  className='cart-btn'
-                  onClick={() =>
-                    handleClick({
-                      image,
-                      id,
-                      price,
-                      text,
-                      details,
-                      quantity,
-                    })
-                  }
-                >
-                  Add to cart
-                </button>
+        {watchProducts
+          .filter((item) =>
+            item.text.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map(({ image, text, details, price, id, quantity }) => {
+            return (
+              <div className='individual-item' key={id}>
+                <img src={image} alt='' className='product-icon' />
+                <div className='details'>
+                  <h2 className='name'>{text}</h2>
+                  <h4>₹{price}</h4>
+                  <p>{details}</p>
+                  <button
+                    className='cart-btn'
+                    onClick={() =>
+                      handleClick({
+                        image,
+                        id,
+                        price,
+                        text,
+                        details,
+                        quantity,
+                      })
+                    }
+                  >
+                    Add to cart
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

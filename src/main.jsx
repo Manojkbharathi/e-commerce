@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './routes/root.jsx';
 import { CartProvider } from './context/context';
 import {
   Root,
@@ -27,10 +28,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Products />,
+        element: <SignUp />,
       },
       {
-        path: 'productWatches',
+        path: 'products',
+        element: <Products />,
+      },
+
+      {
+        path: '/productWatches',
         element: <Watch />,
       },
       {
@@ -61,10 +67,7 @@ const router = createBrowserRouter([
         path: 'ac',
         element: <Ac />,
       },
-      {
-        path: 'signUp',
-        element: <SignUp />,
-      },
+
       {
         path: 'cart',
         element: <Cart />,

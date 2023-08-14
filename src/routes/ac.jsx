@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { acProducts } from '../components/data';
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
@@ -8,9 +8,10 @@ const Ac = () => {
     const newItem = { ...item };
     addToCart(newItem);
   };
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div>
-      <Navbar />
+      <Navbar updateSearchQuery={setSearchQuery} />
       <div className=' product-description'>
         <img
           className='head-img'
@@ -25,26 +26,37 @@ const Ac = () => {
       </div>
       <div>
         <div className='watch-container'>
-          {acProducts.map(({ image, text, details, price, id, quantity }) => {
-            return (
-              <div className='individual-item' key={id}>
-                <img src={image} alt='' className='product-icon' />
-                <div className='details'>
-                  <h2 className='name'>{text}</h2>
-                  <h4>{price}</h4>
-                  <p>{details}</p>
-                  <button
-                    className='cart-btn'
-                    onClick={() =>
-                      handleClick({ image, text, details, price, id, quantity })
-                    }
-                  >
-                    Add to cart
-                  </button>
+          {acProducts
+            .filter((item) =>
+              item.text.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map(({ image, text, details, price, id, quantity }) => {
+              return (
+                <div className='individual-item' key={id}>
+                  <img src={image} alt='' className='product-icon' />
+                  <div className='details'>
+                    <h2 className='name'>{text}</h2>
+                    <h4>{price}</h4>
+                    <p>{details}</p>
+                    <button
+                      className='cart-btn'
+                      onClick={() =>
+                        handleClick({
+                          image,
+                          text,
+                          details,
+                          price,
+                          id,
+                          quantity,
+                        })
+                      }
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/nav-bar/Navbar';
 
 import { cameraProducts } from '../components/data';
@@ -9,10 +9,10 @@ const Tv = () => {
     const newItem = { ...item };
     addToCart(newItem);
   };
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div>
-      {' '}
-      <Navbar />
+      <Navbar updateSearchQuery={setSearchQuery} />
       <div className=' product-description'>
         <img
           className='head-img'
@@ -29,8 +29,11 @@ const Tv = () => {
       </div>
       <div>
         <div className='watch-container'>
-          {cameraProducts.map(
-            ({ image, text, details, price, id, quantity }) => {
+          {cameraProducts
+            .filter((item) =>
+              item.text.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map(({ image, text, details, price, id, quantity }) => {
               return (
                 <div className='individual-item' key={id}>
                   <img src={image} alt='' className='product-icon' />
@@ -56,8 +59,7 @@ const Tv = () => {
                   </div>
                 </div>
               );
-            }
-          )}
+            })}
         </div>
       </div>
     </div>

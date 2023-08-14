@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../form/formStyle.css';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../utils/firebase';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../utils/firebase';
 import { NavLink, useNavigate } from 'react-router-dom';
 const Form = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const onSubmit = async (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [value, setValue] = useState('');
+  const handleCLick = () => {
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        setValue(data.user.email);
+        localStorage.setItem('email', data.user.email);
+        navigate('/products');
+      })
+      .catch((error) => {
+        console.error('Google Sign-In Error:', error);
+      });
+  };
+  useEffect(() => {
+    setValue(localStorage.getItem('email'));
+  }, []);
+  const onSubmit = (e) => {
     e.preventDefault();
-    await createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         setEmail('');
         setPassword('');
+        setError(false);
         navigate('/logIn');
       })
       .catch((err) => {
@@ -23,7 +40,7 @@ const Form = () => {
 
   return (
     <div className='input-container'>
-      <form className='sing-in-form'>
+      <form className='sing-in-form' onSubmit={onSubmit}>
         <div className='content'>
           <label className='email'>e-mail</label>
           <input
@@ -44,13 +61,20 @@ const Form = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type='submit' className='submit' onClick={onSubmit}>
+        <button
+          type='submit'
+          className='submit'
+          onClick={() => navigate('/logIn')}
+        >
           SignUp
         </button>
+        <button className='btn' onClick={handleCLick}>
+          SignIn with Google
+        </button>
+        <button className='btn' onClick={() => navigate('/logIn')}>
+          Already have Account Log in
+        </button>
       </form>
-      <h3>
-        Already have account<NavLink to='/logIn'> signIn</NavLink>
-      </h3>
     </div>
   );
 };

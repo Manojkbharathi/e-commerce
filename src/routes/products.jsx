@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useCartGLobalContext } from '../context/context';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase';
+
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../components/footer.css';
-import { IoMdLogOut, IoMdContact } from 'react-icons/io';
 import { SiShopify } from 'react-icons/si';
+import Navbar from '../components/nav-bar/Navbar';
 import {
   AiFillInstagram,
   AiOutlineFacebook,
@@ -31,25 +30,7 @@ import '../components/productStyle.css';
 const Products = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        setUserName(uid);
-      } else {
-        console.log('user is logged out');
-      }
-    });
-  }, []);
 
-  const handleLogout = async () => {
-    signOut(auth)
-      .then(() => {
-        setUserName('Signed out successfully');
-        navigate('/logIn');
-      })
-      .catch((err) => console.log(err.message));
-  };
   const [users, setUsers] = useState({ name: '', email: '', message: '' });
 
   const { name, email, message } = users;
@@ -63,12 +44,6 @@ const Products = () => {
     setUsers({ name: '', email: '', message: '' });
   }
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   const settings = {
     dots: true,
     infinite: true,
@@ -80,36 +55,10 @@ const Products = () => {
     pauseOnHover: true,
   };
   const { totalQuantity } = useCartGLobalContext();
-
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div className='home'>
-      <div className='navbar'>
-        <div className='profile'>
-          <p>e-shop</p>
-          <span className='logo'>{<SiShopify />}</span>
-        </div>
-        <div className='nav-content'>
-          <div className='search-bar'>
-            <input
-              type='text'
-              placeholder='Search'
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </div>
-          <Link to='/'>Home</Link>
-          <Link to='/signUp'>SignUp</Link>
-          <Link to='/cart'>
-            🛒 <span className='cart-count'>{totalQuantity}</span>
-          </Link>
-          <button className='btn' onClick={handleLogout}>
-            <IoMdLogOut />
-          </button>
-          <h3>
-            user-Id: <span>{userName}</span>
-          </h3>
-        </div>
-      </div>
+      <Navbar updateSearchQuery={setSearchQuery} />
       <div className='slider'>
         <Slider {...settings}>
           {advertiseItem.map(({ id, img }) => {
@@ -134,7 +83,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='productWatches'>
+                  <Link to='/productWatches'>
                     <img src={productImg} className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -151,7 +100,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='mobile'>
+                  <Link to='/mobile'>
                     <img src={productImg} alt='' className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -167,7 +116,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='washingMachine'>
+                  <Link to='/washingMachine'>
                     <img src={productImg} alt='' className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -183,7 +132,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='audio'>
+                  <Link to='/audio'>
                     <img src={productImg} alt='' className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -199,7 +148,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='tv'>
+                  <Link to='/tv'>
                     <img src={productImg} alt='' className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -215,7 +164,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='camera'>
+                  <Link to='/camera'>
                     <img src={productImg} alt='' className='product' />
                     <h4>camera</h4>
                     <p className='product-name'>{name}</p>
@@ -232,7 +181,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='laptop'>
+                  <Link to='/laptop'>
                     <img src={productImg} alt='' className='product' />
                     <p className='product-name'>{name}</p>
                   </Link>
@@ -248,7 +197,7 @@ const Products = () => {
             .map(({ id, productImg, name }) => {
               return (
                 <div className='single-product' key={id}>
-                  <Link to='ac'>
+                  <Link to='/ac'>
                     <img src={productImg} alt='' className='product' />
 
                     <p className='product-name'>{name}</p>

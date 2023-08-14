@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { washingMachineProducts } from '../components/data';
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
@@ -10,9 +10,10 @@ const WashingMachines = () => {
     const newItem = { ...item };
     addToCart(newItem);
   };
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <div>
-      <Navbar />
+      <Navbar updateSearchQuery={setSearchQuery} />
       <div className=' product-description'>
         <img
           className='head-img'
@@ -28,8 +29,11 @@ const WashingMachines = () => {
       </div>
       <div>
         <div className='watch-container'>
-          {washingMachineProducts.map(
-            ({ image, text, details, price, id, quantity }) => {
+          {washingMachineProducts
+            .filter((item) =>
+              item.text.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map(({ image, text, details, price, id, quantity }) => {
               return (
                 <div className='individual-item' key={id}>
                   <img src={image} alt='' className='product-icon' />
@@ -55,8 +59,7 @@ const WashingMachines = () => {
                   </div>
                 </div>
               );
-            }
-          )}
+            })}
         </div>
       </div>
     </div>
