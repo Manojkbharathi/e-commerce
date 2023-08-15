@@ -45,8 +45,9 @@ const Navbar = ({ updateSearchQuery }) => {
         <div className='profile'></div>
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
-          <Link to='/'>SignUp</Link>
-          <Link to='/logIn'>Log In</Link>
+          <Link to='/user'>
+            <IoMdContact />
+          </Link>
           <Link to='/cart'>
             🛒 <span className='cart-count'>{totalQuantity}</span>
           </Link>

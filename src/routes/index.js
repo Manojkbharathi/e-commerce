@@ -11,6 +11,7 @@ import Camera from './camera';
 import Laptop from './laptop';
 import Ac from './ac';
 import LogIn from './logIn';
+import User from './user';
 export {
   ErrorPage,
   Watch,
@@ -25,4 +26,5 @@ export {
   Laptop,
   Ac,
   LogIn,
+  User,
 };

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root.jsx';
 import { CartProvider } from './context/context';
+import {} from './context/userContext.jsx';
 import {
   ErrorPage,
   Watch,
@@ -17,6 +18,7 @@ import {
   Laptop,
   Ac,
   LogIn,
+  User,
 } from './routes/index.js';
 const router = createBrowserRouter([
   {
@@ -74,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: 'logIn',
         element: <LogIn />,
+      },
+      {
+        path: 'user',
+        element: <User />,
       },
     ],
   },

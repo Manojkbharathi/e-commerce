@@ -3,8 +3,8 @@ import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import '../../src/index.css';
-const SignUp = () => {
+import '../index.css';
+const SignUp = (email, password, userName) => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [value, setValue] = useState('');
@@ -61,12 +61,12 @@ const SignUp = () => {
           {error && <span>Wrong email or password</span>}
         </form>
       </div>
-      <button className='button' onClick={handleCLick}>
+      <button className='btn' onClick={handleCLick}>
         SignIn with Google
       </button>
 
-      <button className='button' onClick={() => navigate('/logIn')}>
-        Already have Account log in
+      <button className='btn' onClick={() => navigate('/logIn')}>
+        Already have Account Log in
       </button>
     </div>
   );

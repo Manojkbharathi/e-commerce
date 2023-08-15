@@ -39,7 +39,6 @@ const Products = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        setId(uid);
       } else {
         navigate('/logIn');
       }

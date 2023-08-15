@@ -1,8 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-
-// Your web app's Firebase configuration
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 const firebaseConfig = {
   apiKey: 'AIzaSyBYk0mH9wyGwywPT4DnJU8IgO5fJw2bZ2s',
   authDomain: 'e-commerce-e2035.firebaseapp.com',
@@ -15,6 +19,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 export { provider };
 export const auth = getAuth(app);
 export default app;
+export { db, onAuthStateChanged, signInWithEmailAndPassword };
