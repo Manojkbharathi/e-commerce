@@ -1,6 +1,7 @@
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import '../components/cart.css';
+import { Link } from 'react-router-dom';
 const Cart = () => {
   const {
     cart,
@@ -57,6 +58,9 @@ const Cart = () => {
           </section>
         )}
       </div>
+      <Link to={'/products'}>
+        <button className='button'>Click to Add</button>
+      </Link>
     </div>
   );
 };
