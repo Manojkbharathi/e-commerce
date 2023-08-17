@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root.jsx';
 import { CartProvider } from './context/context';
-import {} from './context/userContext.jsx';
+import { StateProvider } from './context/stateProvider.jsx';
 import {
   ErrorPage,
   Watch,
@@ -20,6 +20,8 @@ import {
   LogIn,
   User,
 } from './routes/index.js';
+import { initialState } from './context/initialState.jsx';
+import userReducer from './utils/reducers/userReducer.js';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -87,7 +89,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CartProvider>
-      <RouterProvider router={router} />
+      <StateProvider initialState={initialState} userReducer={userReducer}>
+        <RouterProvider router={router} />
+      </StateProvider>
     </CartProvider>
   </React.StrictMode>
 );

@@ -8,9 +8,11 @@ import { IoMdLogOut } from 'react-icons/io';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-
+import { useStateValue } from '../../context/stateProvider';
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
+  const { user } = useStateValue();
+  console.log(user);
   const navigate = useNavigate();
   const handleSearchChange = (e) => {
     updateSearchQuery(e.target.value);
@@ -19,9 +21,6 @@ const Navbar = ({ updateSearchQuery }) => {
     signOut(auth)
       .then(() => {
         navigate('/');
-
-        localStorage.clear();
-        window.location.reload();
       })
       .catch((err) => console.log('error'));
   };

@@ -3,10 +3,12 @@ import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getApp, getApps } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
   apiKey: 'AIzaSyBYk0mH9wyGwywPT4DnJU8IgO5fJw2bZ2s',
   authDomain: 'e-commerce-e2035.firebaseapp.com',
@@ -17,10 +19,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
-export { provider };
+const storage = getStorage(app);
+export { provider, db, app };
 export const auth = getAuth(app);
-export default app;
-export { db, onAuthStateChanged, signInWithEmailAndPassword };

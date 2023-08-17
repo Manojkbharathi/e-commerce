@@ -1,26 +1,16 @@
 import { auth, provider } from '../utils/firebase';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import '../index.css';
-const SignUp = (email, password, userName) => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [value, setValue] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleCLick = () => {
-    signInWithPopup(auth, provider)
-      .then((data) => {
-        setValue(data.user.email);
-        localStorage.setItem('email', data.user.email);
-        navigate('/products');
-      })
-      .catch((error) => {
-        console.error('Google Sign-In Error:', error);
-      });
-  };
+
   useEffect(() => {
     setValue(localStorage.getItem('email'));
   }, []);
@@ -61,9 +51,6 @@ const SignUp = (email, password, userName) => {
           {error && <span>Wrong email or password</span>}
         </form>
       </div>
-      <button className='btn' onClick={handleCLick}>
-        SignIn with Google
-      </button>
 
       <button className='btn' onClick={() => navigate('/logIn')}>
         Already have Account Log in
