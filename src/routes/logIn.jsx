@@ -95,7 +95,7 @@ const LogIn = () => {
           Sign in
         </button>
       </form>
-      <button className='btn' onClick={handleCLick}>
+      <button className='button' onClick={handleCLick}>
         SignIn with Google
       </button>
     </div>

@@ -52,7 +52,7 @@ const SignUp = () => {
         </form>
       </div>
 
-      <button className='btn' onClick={() => navigate('/logIn')}>
+      <button className='button' onClick={() => navigate('/logIn')}>
         Already have Account Log in
       </button>
     </div>

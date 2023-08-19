@@ -78,6 +78,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  align-items: center;
 }
 .user-details {
   display: flex;
