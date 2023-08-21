@@ -2,6 +2,8 @@ import { auth, provider } from '../utils/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useStateValue } from '../context/stateProvider';
+import { actionType } from '../utils/reducers/userReducer';
 
 import '../index.css';
 const SignUp = () => {
@@ -10,6 +12,9 @@ const SignUp = () => {
   const [value, setValue] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
+  const [number, setNumber] = useState('');
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     setValue(localStorage.getItem('email'));
@@ -20,6 +25,16 @@ const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
+        const loginDetails = {
+          SignUpMethod: 'emailAndPassword',
+          displayName: userName,
+          phoneNumber: number,
+        };
+        dispatch({
+          type: actionType.SET_USER,
+          user: { ...user, ...loginDetails }, // Merge user and loginDetails
+        });
         setEmail('');
         setPassword('');
         setError(false);
@@ -36,6 +51,7 @@ const SignUp = () => {
           <input
             type='email'
             placeholder='email'
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
@@ -43,7 +59,24 @@ const SignUp = () => {
             placeholder='password'
             onChange={(e) => setPassword(e.target.value)}
           />
-
+          <div className='content'>
+            <input
+              type='text'
+              placeholder='Your name'
+              value={userName}
+              required
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+          <div className='content'>
+            <input
+              type='number'
+              placeholder=' number'
+              value={number}
+              required
+              onChange={(e) => setNumber(e.target.value)}
+            />
+          </div>
           <button type='submit' className='button'>
             signUp
           </button>

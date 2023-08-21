@@ -22,7 +22,7 @@ const User = () => {
         {user.photoURL && <img src={user.photoURL} alt='User Profile' />}
         <p>Name: {user.displayName || 'N/A'}</p>
         <p>Email: {user.email || 'N/A'}</p>
-        <p>Ph number :{user.phoneNumber}</p>
+        <p>Ph number :{user.phoneNumber || 'N/A'}</p>
       </div>
     </div>
   );
