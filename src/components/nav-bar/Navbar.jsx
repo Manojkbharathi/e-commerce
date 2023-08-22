@@ -12,7 +12,6 @@ import { useStateValue } from '../../context/stateProvider';
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
   const { user } = useStateValue();
-  console.log(user);
   const navigate = useNavigate();
   const handleSearchChange = (e) => {
     updateSearchQuery(e.target.value);

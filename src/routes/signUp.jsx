@@ -4,7 +4,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useStateValue } from '../context/stateProvider';
 import { actionType } from '../utils/reducers/userReducer';
-
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { db } from '../utils/firebase';
 import '../index.css';
 const SignUp = () => {
   const navigate = useNavigate();
@@ -31,9 +32,22 @@ const SignUp = () => {
           displayName: userName,
           phoneNumber: number,
         };
+        //  adding user details to fire store
+        const userDoc = collection(db, 'users');
+        addDoc(userDoc, {
+          uid: user.uid,
+          email: user.email,
+          ...loginDetails,
+        })
+          .then(() => {
+            alert('successfully logged in');
+          })
+          .catch((error) => {
+            console.log('Error');
+          });
         dispatch({
           type: actionType.SET_USER,
-          user: { ...user, ...loginDetails }, // Merge user and loginDetails
+          user: { ...user, ...loginDetails },
         });
         setEmail('');
         setPassword('');

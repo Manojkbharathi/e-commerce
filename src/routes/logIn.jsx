@@ -1,28 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { auth, provider } from '../utils/firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { useStateValue } from '../context/stateProvider';
+import { actionType } from '../utils/reducers/userReducer';
+import { collection, where, query, getDocs } from 'firebase/firestore';
+import { db } from '../utils/firebase';
 
-import '../index.css';
-import { NavLink, useNavigate } from 'react-router-dom';
 const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState('');
-  const [number, setNumber] = useState('');
+  const [{ user }, dispatch] = useStateValue();
+
   const onLogin = async (e) => {
     e.preventDefault();
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setEmail('');
-        setPassword('');
-        setUserName('');
+
+    try {
+      // Sign in with email and password
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // Fetch user data from Firestore based on email
+      const userQuery = query(
+        collection(db, 'users'),
+        where('email', '==', email)
+      );
+      const querySnapshot = await getDocs(userQuery);
+
+      if (querySnapshot.size === 1) {
+        // Get the user's data
+        const userData = querySnapshot.docs[0].data();
+
+        // Dispatch the user data to the context
+        dispatch({
+          type: actionType.SET_USER,
+          user: { ...userCredential.user, ...userData },
+        });
+
+        // Redirect to the products page or any other route you prefer
         navigate('/products');
-      })
-      .catch((err) => {
-        alert('please enter valid details or check your connection');
-      });
+      } else {
+        // Handle the case where multiple users have the same email (this should not happen)
+        console.error('Multiple users found with the same email.');
+      }
+    } catch (error) {
+      alert('Please enter valid details or check your connection');
+      console.error('Error:', error);
+    }
   };
   const handleCLick = async () => {
     const {
