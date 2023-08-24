@@ -1,67 +1,108 @@
-import { auth, provider } from '../utils/firebase';
+import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../context/stateProvider';
+import { auth, db, storage } from '../utils/firebase';
 import { actionType } from '../utils/reducers/userReducer';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../utils/firebase';
-import '../index.css';
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const [value, setValue] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
   const [number, setNumber] = useState('');
+  const [userImage, setUserImage] = useState(null);
   const [{ user }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    setValue(localStorage.getItem('email'));
-  }, []);
-  const handleLogin = (e) => {
+  const handleImageUpload = async (userUid) => {
+    try {
+      if (userImage) {
+        // Check if the selected file is an image
+        if (!userImage.type.startsWith('image/')) {
+          console.error('Selected file is not an image.');
+          return;
+        }
+
+        // Check the file size (limit to, for example, 5MB)
+        if (userImage.size > 5 * 1024 * 1024) {
+          console.error(
+            'Selected image is too large. Please select a smaller image.'
+          );
+          return;
+        }
+
+        const storageRef = ref(storage, `profileImages/${userUid}`);
+        await uploadBytes(storageRef, userImage);
+
+        // Get the URL of the uploaded image
+        const url = await getDownloadURL(storageRef);
+        return url; // Return the URL of the uploaded image
+      }
+
+      return null; // Return null if no image was uploaded
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      // You can handle the error here, such as showing an error message to the user.
+      return null; // Return null in case of error
+    }
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        const loginDetails = {
-          SignUpMethod: 'emailAndPassword',
-          displayName: userName,
-          phoneNumber: number,
-        };
-        //  adding user details to fire store
-        const userDoc = collection(db, 'users');
-        addDoc(userDoc, {
-          uid: user.uid,
-          email: user.email,
-          ...loginDetails,
-        })
-          .then(() => {
-            alert('successfully logged in');
-          })
-          .catch((error) => {
-            console.log('Error');
-          });
-        dispatch({
-          type: actionType.SET_USER,
-          user: { ...user, ...loginDetails },
-        });
-        setEmail('');
-        setPassword('');
-        setError(false);
-        navigate('/logIn');
-      })
-      .catch((error) => {
-        setError(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Upload user image to Firebase storage
+      const photoURL = await handleImageUpload(user.uid);
+
+      const loginDetails = {
+        SignUpMethod: 'emailAndPassword',
+        displayName: userName,
+        phoneNumber: number,
+        photoURL: photoURL, // Set photoURL to the URL of the uploaded image
+      };
+
+      //  adding user details to Firestore
+      const userDoc = collection(db, 'users');
+      await addDoc(userDoc, {
+        uid: user.uid,
+        email: user.email,
+        ...loginDetails,
       });
+
+      dispatch({
+        type: actionType.SET_USER,
+        user: { ...user, ...loginDetails },
+      });
+
+      setEmail('');
+      setPassword('');
+      setError(false);
+      navigate('/logIn');
+    } catch (error) {
+      setError(true);
+      console.error('Error creating user:', error);
+    }
   };
+
   return (
     <div className='sign-up-container'>
       <div className='sign-up'>
         <form onSubmit={handleLogin}>
+          <input
+            type='file'
+            accept='image/*'
+            onChange={(e) => setUserImage(e.target.files[0])}
+          />
           <input
             type='email'
             placeholder='email'
@@ -73,6 +114,7 @@ const SignUp = () => {
             placeholder='password'
             onChange={(e) => setPassword(e.target.value)}
           />
+
           <div className='content'>
             <input
               type='text'
@@ -85,14 +127,14 @@ const SignUp = () => {
           <div className='content'>
             <input
               type='number'
-              placeholder=' number'
+              placeholder='number'
               value={number}
               required
               onChange={(e) => setNumber(e.target.value)}
             />
           </div>
           <button type='submit' className='button'>
-            signUp
+            SignUp
           </button>
 
           {error && <span>Wrong email or password</span>}
@@ -100,7 +142,7 @@ const SignUp = () => {
       </div>
 
       <button className='button' onClick={() => navigate('/logIn')}>
-        Already have Account Log in
+        Already have an Account? Log in
       </button>
     </div>
   );

@@ -3,10 +3,11 @@ import { useStateValue } from '../context/stateProvider';
 import Navbar from '../components/nav-bar/Navbar';
 import { collection, where, query, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-
+import '../index.css';
 const User = () => {
   const [{ user }] = useStateValue();
   const [userData, setUserData] = useState(null);
+  const [userImageData, setUserImageData] = useState(null); // Store the image data
 
   useEffect(() => {
     if (user) {
@@ -20,9 +21,13 @@ const User = () => {
           const querySnapshot = await getDocs(userQuery);
 
           if (querySnapshot.size === 1) {
-            // Get the user's data
             const userData = querySnapshot.docs[0].data();
             setUserData(userData);
+
+            // Set the user image data if available
+            if (userData.photoData) {
+              setUserImageData(userData.photoData);
+            }
           } else {
             console.error('User data not found in Firestore');
           }
@@ -40,21 +45,18 @@ const User = () => {
       <Navbar />
       <div className='user-details'>
         <h2>User Profile</h2>
-
-        {user ? (
-          userData ? (
-            <div>
-              {user.photoURL && <img src={user.photoURL} alt='User Profile' />}
-              <p>Name: {userData.displayName || 'N/A'}</p>
-              <p>Email: {userData.email || 'N/A'}</p>
-              <p>Phone number: {userData.phoneNumber || 'N/A'}</p>
+        <div>
+          {user ? (
+            <div className='user-details'>
+              <img src={user.photoURL} alt='' />
+              <p>Name: {user.displayName}</p>
+              <p>Email: {user.email}</p>
+              <p>Phone number: {user.phoneNumber||`null`}</p>
             </div>
           ) : (
             <div>Loading user data...</div>
-          )
-        ) : (
-          <div>User not logged in</div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

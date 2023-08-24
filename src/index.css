@@ -80,9 +80,16 @@ form {
   gap: 3rem;
   align-items: center;
 }
+
+.user-img {
+  height: auto;
+  width: auto;
+}
 .user-details {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 2rem;
-  margin: 3rem;
+  margin: 2rem;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../utils/firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../context/stateProvider';
 import { actionType } from '../utils/reducers/userReducer';
