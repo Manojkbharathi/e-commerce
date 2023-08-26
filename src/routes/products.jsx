@@ -10,6 +10,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../components/footer.css';
 import { SiShopify } from 'react-icons/si';
 import Navbar from '../components/nav-bar/Navbar';
+import Footer from './footer';
 import {
   AiFillInstagram,
   AiOutlineFacebook,
@@ -52,7 +53,8 @@ const Products = () => {
   function submitHandler() {
     setUsers({ name: '', email: '', message: '' });
   }
-
+  const { totalQuantity } = useCartGLobalContext();
+  const [searchQuery, setSearchQuery] = useState('');
   const settings = {
     dots: true,
     infinite: true,
@@ -63,8 +65,7 @@ const Products = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
   };
-  const { totalQuantity } = useCartGLobalContext();
-  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div className='home'>
       <Navbar updateSearchQuery={setSearchQuery} />
@@ -217,61 +218,7 @@ const Products = () => {
         </div>
       </div>
 
-      <footer className='footer'>
-        <form
-          className='form'
-          action='https://formsubmit.co/manojbharathi00@gmail.com'
-          method='POST'
-          onChange={(event) => handleOnchange(event)}
-        >
-          <div>
-            <input
-              type='text'
-              placeholder='Your Name'
-              name='name'
-              onChange={(event) => handleOnchange(event)}
-              value={name}
-              required
-            />
-          </div>
-          <div>
-            <input
-              type='email'
-              name='email'
-              value={email}
-              placeholder='Your mail id'
-              onChange={(event) => handleOnchange(event)}
-              required
-            />
-          </div>
-
-          <div>
-            <button className='btn-submit' type='submit'>
-              submit
-            </button>
-          </div>
-        </form>
-        <div className='social-icons'>
-          <a
-            className='s-icons'
-            href='https://silver-platypus-c72db6.netlify.app'
-          >
-            <AiFillInstagram />
-          </a>
-          <a
-            className='s-icons'
-            href='https://silver-platypus-c72db6.netlify.app'
-          >
-            <AiOutlineFacebook />
-          </a>
-          <a
-            className='s-icons'
-            href='https://silver-platypus-c72db6.netlify.app'
-          >
-            <AiOutlineTwitter />
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

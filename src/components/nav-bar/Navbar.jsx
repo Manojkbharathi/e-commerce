@@ -9,6 +9,8 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../context/stateProvider';
+import { collection, where, query, getDocs } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
   const { user } = useStateValue();
