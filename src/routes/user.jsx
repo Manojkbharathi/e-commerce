@@ -2,22 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../context/stateProvider';
 import Navbar from '../components/nav-bar/Navbar';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-<<<<<<< HEAD
 import { db, storage } from '../utils/firebase';
 import '../index.css';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage
 import { getApp, getApps } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
-=======
-import { db } from '../utils/firebase';
-import '../index.css';
->>>>>>> ce6afbeb4e8b03672904866e313bcb9d6cb33c19
 
 const User = () => {
   const [{ user }] = useStateValue();
   const [userData, setUserData] = useState(null);
   const [userImageData, setUserImageData] = useState(null);
-<<<<<<< HEAD
   const [isEditing, setIsEditing] = useState(false);
   const [editedUserData, setEditedUserData] = useState({
     displayName: '',
@@ -26,8 +20,6 @@ const User = () => {
     photoURL: '',
   });
   const [newProfilePicture, setNewProfilePicture] = useState(null);
-=======
->>>>>>> ce6afbeb4e8b03672904866e313bcb9d6cb33c19
 
   useEffect(() => {
     if (user) {
@@ -55,7 +47,6 @@ const User = () => {
     }
   }, [user]);
 
-<<<<<<< HEAD
   const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
   const handleInputChange = (event) => {
@@ -92,23 +83,6 @@ const User = () => {
       setNewProfilePicture(file);
     }
   };
-=======
-  useEffect(() => {
-    // Check if user is authenticated and userData is available
-    if (user && userData) {
-      // Store or update user data in Firestore
-      const userDocRef = doc(db, 'users', user.uid);
-
-      setDoc(userDocRef, userData)
-        .then(() => {
-          console.log('User data stored in Firestore.');
-        })
-        .catch((error) => {
-          console.error('Error storing user data in Firestore:', error);
-        });
-    }
-  }, [user, userData]);
->>>>>>> ce6afbeb4e8b03672904866e313bcb9d6cb33c19
 
   return (
     <div className='user-profile'>
@@ -119,7 +93,6 @@ const User = () => {
           isEditing ? (
             // Edit form
             <div className='user-details'>
-<<<<<<< HEAD
               <input
                 type='text'
                 name='displayName'
@@ -144,12 +117,6 @@ const User = () => {
                 onChange={handleProfilePictureChange}
               />
               <button onClick={handleSaveChanges}>Save Changes</button>
-=======
-              <img src={user.photoURL} alt='' />
-              <p>Name: {user.displayName}</p>
-              <p>Email: {user.email}</p>
-              <p>Phone number: {user.phoneNumber || `null`}</p>
->>>>>>> ce6afbeb4e8b03672904866e313bcb9d6cb33c19
             </div>
           ) : (
             // Display user data
