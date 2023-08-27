@@ -82,8 +82,8 @@ form {
 }
 
 .user-img {
-  height: auto;
-  width: auto;
+  height: 5rem;
+  width: 5rem;
 }
 .user-details {
   display: flex;

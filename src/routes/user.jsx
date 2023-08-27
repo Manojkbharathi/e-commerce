@@ -121,7 +121,11 @@ const User = () => {
           ) : (
             // Display user data
             <div className='user-details'>
-              <img src={editedUserData.photoURL || user.photoURL} alt='' />
+              <img
+                className='user-img'
+                src={editedUserData.photoURL || user.photoURL}
+                alt=''
+              />
               <p>Name: {editedUserData.displayName || user.displayName}</p>
               <p>Email: {editedUserData.email || user.email}</p>
               <p>

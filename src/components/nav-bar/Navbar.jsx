@@ -9,11 +9,11 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../context/stateProvider';
-import { collection, where, query, getDocs } from 'firebase/firestore';
-import { db } from '../../utils/firebase';
+
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
-  const { user } = useStateValue();
+
+  const [{ user }] = useStateValue();
   const navigate = useNavigate();
   const handleSearchChange = (e) => {
     updateSearchQuery(e.target.value);
@@ -46,7 +46,11 @@ const Navbar = ({ updateSearchQuery }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <Link to='/user'>
-            <IoMdContact />
+            {user ? (
+              <img className='user-img' src={user.photoURL} alt='User' />
+            ) : (
+              <IoMdContact />
+            )}
           </Link>
           <Link to='/cart'>
             🛒 <span className='cart-count'>{totalQuantity}</span>
