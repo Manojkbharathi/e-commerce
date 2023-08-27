@@ -22,6 +22,7 @@ import {
 } from './routes/index.js';
 import { initialState } from './context/initialState.jsx';
 import userReducer from './utils/reducers/userReducer.js';
+import { AuthProvider } from './context/auth.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -90,7 +91,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CartProvider>
       <StateProvider initialState={initialState} userReducer={userReducer}>
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </StateProvider>
     </CartProvider>
   </React.StrictMode>

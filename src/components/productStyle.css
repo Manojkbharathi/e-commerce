@@ -81,11 +81,7 @@
   border: none;
   color: white;
 }
-.social-icons {
-  display: flex;
-  align-items: center;
-  gap: 8rem;
-}
+
 .btn-submit {
   padding: 0.5rem 1rem;
   background-color: aqua;
