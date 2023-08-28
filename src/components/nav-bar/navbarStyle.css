@@ -17,3 +17,10 @@
   left: -45%;
   top: -1rem;
 }
+
+select {
+  background-color: rgb(52, 52, 60);
+  color: white;
+  font-size: 1.25rem;
+  gap: 0;
+}

@@ -21,6 +21,13 @@ const User = () => {
   });
   const [newProfilePicture, setNewProfilePicture] = useState(null);
 
+  // Define a function to update the user data in the Navbar
+  const updateUserInNavbar = (newUserData) => {
+    // You can pass this function to the Navbar component
+    // and call it when user data is updated
+    setEditedUserData(newUserData);
+  };
+
   useEffect(() => {
     if (user) {
       const fetchUserData = async () => {
@@ -35,6 +42,9 @@ const User = () => {
             if (userData.photoData) {
               setUserImageData(userData.photoData);
             }
+
+            // Update user data in Navbar
+            updateUserInNavbar(userData);
           } else {
             console.error('User document not found in Firestore.');
           }
@@ -68,6 +78,9 @@ const User = () => {
         const photoURL = await getDownloadURL(storageRef);
         console.log('Profile picture uploaded:', photoURL);
         setEditedUserData({ ...editedUserData, photoURL });
+
+        // Update user data in Navbar after profile picture change
+        updateUserInNavbar({ ...editedUserData, photoURL });
       }
 
       setIsEditing(false);
@@ -86,7 +99,7 @@ const User = () => {
 
   return (
     <div className='user-profile'>
-      <Navbar />
+      <Navbar user={editedUserData} /> {/* Pass user data to Navbar */}
       <div className='user-details'>
         <h2>User Profile</h2>
         {user ? (
