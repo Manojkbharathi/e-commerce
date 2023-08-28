@@ -88,6 +88,7 @@ const User = () => {
     } catch (error) {
       console.error('Error updating user data in Firestore:', error);
     }
+    setEditedUserData();
   };
 
   const handleProfilePictureChange = (event) => {
@@ -109,18 +110,21 @@ const User = () => {
               <input
                 type='text'
                 name='displayName'
+                placeholder='Name'
                 value={editedUserData.displayName}
                 onChange={handleInputChange}
               />
               <input
                 type='text'
                 name='email'
+                placeholder='Email'
                 value={editedUserData.email}
                 onChange={handleInputChange}
               />
               <input
                 type='text'
                 name='phoneNumber'
+                placeholder='Ph number'
                 value={editedUserData.phoneNumber}
                 onChange={handleInputChange}
               />
@@ -129,7 +133,9 @@ const User = () => {
                 accept='image/*'
                 onChange={handleProfilePictureChange}
               />
-              <button onClick={handleSaveChanges}>Save Changes</button>
+              <button className='button' onClick={handleSaveChanges}>
+                Save Changes
+              </button>
             </div>
           ) : (
             // Display user data
@@ -145,7 +151,9 @@ const User = () => {
                 Phone number:{' '}
                 {editedUserData.phoneNumber || user.phoneNumber || 'null'}
               </p>
-              <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+              <button onClick={() => setIsEditing(true)} className='button'>
+                Edit Profile
+              </button>
             </div>
           )
         ) : (
