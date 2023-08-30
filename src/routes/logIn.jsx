@@ -12,6 +12,7 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [{ user }, dispatch] = useStateValue();
+  const [isOpen, setIsOpen] = useState(false);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -92,6 +93,20 @@ const LogIn = () => {
       <button className='button' onClick={handleCLick}>
         SignIn with Google
       </button>
+      <div>
+        <button onClick={() => setIsOpen(!isOpen)}>Toggle Dropdown</button>
+        {isOpen && (
+          <div className='credential'>
+            <p>
+              <span>Email: </span>manojbharathi@gmail.com
+            </p>
+            <p>
+              {' '}
+              <span>Password: </span>123456
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

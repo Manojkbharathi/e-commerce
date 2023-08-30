@@ -93,3 +93,19 @@ form {
   gap: 2rem;
   margin: 2rem;
 }
+.credential {
+  width: 20rem;
+  height: 8rem;
+  background-color: white;
+  margin: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.credential p {
+  font-size: 1rem;
+  color: black;
+  margin-left: 3rem;
+}

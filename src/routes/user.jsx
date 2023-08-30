@@ -4,9 +4,13 @@ import Navbar from '../components/nav-bar/Navbar';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db, storage } from '../utils/firebase';
 import '../index.css';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getApp, getApps } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
+
+const firebaseConfig = {
+  // Your Firebase configuration here
+};
 
 const User = () => {
   const [{ user }] = useStateValue();
@@ -67,8 +71,17 @@ const User = () => {
   const handleSaveChanges = async () => {
     try {
       console.log('Updating user data in Firestore...');
+
+      // Update editedUserData with the edited values
+      const updatedUserData = {
+        ...editedUserData,
+        displayName: editedUserData.displayName || user.displayName || '',
+        email: editedUserData.email || user.email || '',
+        phoneNumber: editedUserData.phoneNumber || user.phoneNumber || '',
+      };
+
       const userDocRef = doc(db, 'users', user.uid);
-      await setDoc(userDocRef, editedUserData, { merge: true });
+      await setDoc(userDocRef, updatedUserData, { merge: true });
 
       console.log('Uploading profile picture to Storage...');
       if (newProfilePicture) {
@@ -77,10 +90,12 @@ const User = () => {
 
         const photoURL = await getDownloadURL(storageRef);
         console.log('Profile picture uploaded:', photoURL);
-        setEditedUserData({ ...editedUserData, photoURL });
+
+        // Update editedUserData with the new photoURL
+        updatedUserData.photoURL = photoURL;
 
         // Update user data in Navbar after profile picture change
-        updateUserInNavbar({ ...editedUserData, photoURL });
+        updateUserInNavbar(updatedUserData);
       }
 
       setIsEditing(false);
@@ -88,9 +103,8 @@ const User = () => {
     } catch (error) {
       console.error('Error updating user data in Firestore:', error);
     }
-    setEditedUserData();
   };
-
+  cghjk;
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -124,7 +138,7 @@ const User = () => {
               <input
                 type='text'
                 name='phoneNumber'
-                placeholder='Ph number'
+                placeholder='Phone number'
                 value={editedUserData.phoneNumber}
                 onChange={handleInputChange}
               />
@@ -142,11 +156,13 @@ const User = () => {
             <div className='user-details'>
               <img
                 className='user-img'
-                src={editedUserData.photoURL || user.photoURL}
+                src={editedUserData.photoURL || user.photoURL || ''}
                 alt=''
               />
-              <p>Name: {editedUserData.displayName || user.displayName}</p>
-              <p>Email: {editedUserData.email || user.email}</p>
+              <p>
+                Name: {editedUserData.displayName || user.displayName || ''}
+              </p>
+              <p>Email: {editedUserData.email || user.email || ''}</p>
               <p>
                 Phone number:{' '}
                 {editedUserData.phoneNumber || user.phoneNumber || 'null'}

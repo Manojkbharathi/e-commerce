@@ -46,8 +46,7 @@ const Navbar = ({ updateSearchQuery, editedUserData }) => {
   // Define a variable for displaying the user's name based on the selected option
   let displayNameToDisplay;
   if (selectedOption === 'user') {
-    displayNameToDisplay =
-      user?.displayName || editedUserData?.displayName || 'User';
+    displayNameToDisplay = editedUserData?.displayName || user?.displayName;
   } else {
     displayNameToDisplay = 'User profile'; // Display this when 'User profile' is selected
   }
@@ -72,7 +71,7 @@ const Navbar = ({ updateSearchQuery, editedUserData }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <select onChange={handleDropdownChange} value={selectedOption}>
-            <option value=''>{displayNameToDisplay}</option>
+            <option value='user'>{displayNameToDisplay}</option>
             <option value='user'>User profile</option>
             <option value='logout'>Logout</option>
           </select>
