@@ -23,7 +23,8 @@ import {
 import { initialState } from './context/initialState.jsx';
 import userReducer from './utils/reducers/userReducer.js';
 import { AuthProvider } from './context/auth.jsx';
-import { UserProvider } from '../src/context/userContext.jsx';
+import { StoreProvider } from '../src/context/userContext.jsx';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -93,9 +94,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <CartProvider>
       <StateProvider initialState={initialState} userReducer={userReducer}>
         <AuthProvider>
-          <UserProvider>
+          <StoreProvider>
             <RouterProvider router={router} />
-          </UserProvider>
+          </StoreProvider>
         </AuthProvider>
       </StateProvider>
     </CartProvider>

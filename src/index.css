@@ -66,6 +66,7 @@ form {
   border-radius: 20px;
   color: rgb(0, 229, 255);
   border: none;
+  font-size: 1rem;
 }
 .button:hover {
   background-color: aqua;
@@ -85,18 +86,11 @@ form {
   height: 5rem;
   width: 5rem;
 }
-.user-details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 2rem;
-}
+
 .credential {
   width: 20rem;
   height: 8rem;
-  background-color: white;
+  background-color: rgb(26, 140, 221);
   margin: 2rem;
   display: flex;
   align-items: flex-start;

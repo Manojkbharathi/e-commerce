@@ -10,7 +10,7 @@ import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../context/stateProvider';
 
-const Navbar = ({ updateSearchQuery, editedUserData }) => {
+const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
   const [{ user }] = useStateValue();
   const navigate = useNavigate();
@@ -43,14 +43,6 @@ const Navbar = ({ updateSearchQuery, editedUserData }) => {
       .catch((err) => console.log('error'));
   };
 
-  // Define a variable for displaying the user's name based on the selected option
-  let displayNameToDisplay;
-  if (selectedOption === 'user') {
-    displayNameToDisplay = editedUserData?.displayName || user?.displayName;
-  } else {
-    displayNameToDisplay = 'User profile'; // Display this when 'User profile' is selected
-  }
-
   return (
     <div>
       <div className='navbar'>
@@ -71,7 +63,6 @@ const Navbar = ({ updateSearchQuery, editedUserData }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <select onChange={handleDropdownChange} value={selectedOption}>
-            <option value='user'>{displayNameToDisplay}</option>
             <option value='user'>User profile</option>
             <option value='logout'>Logout</option>
           </select>

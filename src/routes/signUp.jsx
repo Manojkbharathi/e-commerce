@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-import { useStateValue } from '../context/stateProvider';
 import { auth, db, storage } from '../utils/firebase';
 import { actionType } from '../utils/reducers/userReducer';
 
@@ -15,7 +14,6 @@ const SignUp = () => {
   const [userName, setUserName] = useState('');
   const [number, setNumber] = useState('');
   const [userImage, setUserImage] = useState(null);
-  const [{ user }, dispatch] = useStateValue();
 
   const handleImageUpload = async (userUid) => {
     try {
@@ -45,7 +43,7 @@ const SignUp = () => {
       return null; // Return null if no image was uploaded
     } catch (error) {
       console.error('Error uploading image:', error);
-      // You can handle the error here, such as showing an error message to the user.
+
       return null; // Return null in case of error
     }
   };
@@ -77,11 +75,6 @@ const SignUp = () => {
         uid: user.uid,
         email: user.email,
         ...loginDetails,
-      });
-
-      dispatch({
-        type: actionType.SET_USER,
-        user: { ...user, ...loginDetails },
       });
 
       setEmail('');

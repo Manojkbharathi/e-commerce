@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useStateValue } from '../context/stateProvider';
 import { actionType } from '../utils/reducers/userReducer';
 import { collection, where, query, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-
 const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [{ user }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
-
   const onLogin = async (e) => {
     e.preventDefault();
 
@@ -35,17 +31,11 @@ const LogIn = () => {
       if (querySnapshot.size === 1) {
         // Get the user's data
         const userData = querySnapshot.docs[0].data();
-
+        console.log(userData);
         // Dispatch the user data to the context
-        dispatch({
-          type: actionType.SET_USER,
-          user: { ...userCredential.user, ...userData },
-        });
-
+        navigate('/user', { state: { userData } });
         // Redirect to the products page or any other route you prefer
-        navigate('/products');
       } else {
-        // Handle the case where multiple users have the same email (this should not happen)
         console.error('Multiple users found with the same email.');
       }
     } catch (error) {
@@ -94,7 +84,9 @@ const LogIn = () => {
         SignIn with Google
       </button>
       <div>
-        <button onClick={() => setIsOpen(!isOpen)}>Toggle Dropdown</button>
+        <button className='button' onClick={() => setIsOpen(!isOpen)}>
+          Test credential
+        </button>
         {isOpen && (
           <div className='credential'>
             <p>
