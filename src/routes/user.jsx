@@ -4,30 +4,23 @@ import { useLocation } from 'react-router-dom';
 import '../components/user.css';
 import { signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 const User = () => {
   const location = useLocation();
+  const userData = location.state && location.state.userData;
+  console.log('User Data Received:', userData);
+
   const [isEditing, setIsEditing] = useState(false);
   const [newProfilePicture, setNewProfilePicture] = useState(null);
-  const [userData, setUserData] = useState(null); // Initialize userData as null
-
-  // Fetch user data when the component mounts
+  const navigate = useNavigate();
   useEffect(() => {
-    // Check if userData is already available in location state
+    console.log(userData);
+
     if (location.state && location.state.userData) {
       setUserData(location.state.userData);
-    } else {
-      // If not available, you can fetch it here from your database or source
-      // Example: Fetch userData from your database using an API call
-      // Replace this with your actual fetching logic
-      fetchUserDataFromDatabase()
-        .then((userData) => {
-          setUserData(userData);
-        })
-        .catch((error) => {
-          console.error('Error fetching user data:', error);
-        });
     }
   }, [location.state]);
+  console.log(userData);
   const logout = async () => {
     signOut(auth)
       .then(() => {
@@ -41,7 +34,7 @@ const User = () => {
       <div className='user-container'>
         <div className='user-details'>
           <h2>User Profile</h2>
-          {/*to Check if userData is available before rendering */}
+
           {userData && (
             <>
               <div className='flex'>
@@ -51,8 +44,12 @@ const User = () => {
                     type='text'
                     name='displayName'
                     placeholder='Name'
-                    value={userData?.displayName}
+                    value={userData?.displayName || ''}
+                    onChange={(e) =>
+                      setUserData({ ...userData, displayName: e.target.value })
+                    }
                   />
+
                   <input
                     type='text'
                     name='email'

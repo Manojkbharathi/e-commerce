@@ -8,11 +8,9 @@ import { IoMdLogOut } from 'react-icons/io';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useStateValue } from '../../context/stateProvider';
 
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
-  const [{ user }] = useStateValue();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState('user'); // Track the selected option
 
@@ -63,6 +61,7 @@ const Navbar = ({ updateSearchQuery }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <select onChange={handleDropdownChange} value={selectedOption}>
+            <option value=''>profile</option>
             <option value='user'>User profile</option>
             <option value='logout'>Logout</option>
           </select>

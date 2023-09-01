@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../utils/firebase';
+import React, { useState, useContext } from 'react';
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
+import { auth, provider, db } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { actionType } from '../utils/reducers/userReducer';
 import { collection, where, query, getDocs } from 'firebase/firestore';
-import { db } from '../utils/firebase';
 const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
   const onLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // Sign in with email and password
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -29,12 +31,9 @@ const LogIn = () => {
       const querySnapshot = await getDocs(userQuery);
 
       if (querySnapshot.size === 1) {
-        // Get the user's data
         const userData = querySnapshot.docs[0].data();
         console.log(userData);
-        // Dispatch the user data to the context
         navigate('/user', { state: { userData } });
-        // Redirect to the products page or any other route you prefer
       } else {
         console.error('Multiple users found with the same email.');
       }
@@ -43,15 +42,24 @@ const LogIn = () => {
       console.error('Error:', error);
     }
   };
-  const handleCLick = async () => {
-    const {
-      user: { refreshToken, providerData },
-    } = await signInWithPopup(auth, provider);
-    dispatch({
-      type: actionType.SET_USER,
-      user: providerData[0],
-    });
-    navigate('/products');
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      const user = result.user;
+
+      dispatch({
+        type: actionType.SET_USER,
+        user: {
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+        },
+      });
+      stateDispatch({ type: 'SET_USER_DATA', userData });
+      navigate('/products');
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    }
   };
 
   return (
@@ -80,7 +88,7 @@ const LogIn = () => {
           Sign in
         </button>
       </form>
-      <button className='button' onClick={handleCLick}>
+      <button className='button' onClick={handleGoogleSignIn}>
         SignIn with Google
       </button>
       <div>

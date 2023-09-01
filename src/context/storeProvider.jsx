@@ -1,16 +1,19 @@
-import React, { createContext, useEffect, useReducer, useState } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+  useContext,
+} from 'react';
 import { db } from '../utils/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import userReducer, { actionType } from '../utils/reducers/userReducer'; // Import the reducer and action types
-
-// Define initial user data
+import userReducer, { SET_USER_DATA } from '../utils/reducers/userReducer';
 const UserContext = createContext();
 
 const StoreProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [state, dispatch] = useReducer(userReducer, { user: null }); // Initial state is null
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,8 +28,7 @@ const StoreProvider = ({ children }) => {
         // Dispatch the user data
         if (documents.length > 0) {
           dispatch({
-            type: actionType.SET_USER_DATA,
-            user: documents[0], // Assuming the user data is in the first document
+            type: SET_USER_DATA,
           });
         }
       } catch (error) {
@@ -45,4 +47,4 @@ const StoreProvider = ({ children }) => {
   );
 };
 
-export { StoreProvider };
+export { StoreProvider, UserContext };

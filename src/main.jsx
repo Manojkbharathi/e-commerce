@@ -23,7 +23,7 @@ import {
 import { initialState } from './context/initialState.jsx';
 import userReducer from './utils/reducers/userReducer.js';
 import { AuthProvider } from './context/auth.jsx';
-import { StoreProvider } from '../src/context/userContext.jsx';
+import { StoreProvider } from '../src/context/storeProvider.jsx';
 
 const router = createBrowserRouter([
   {

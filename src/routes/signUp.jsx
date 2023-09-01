@@ -4,7 +4,6 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import { auth, db, storage } from '../utils/firebase';
-import { actionType } from '../utils/reducers/userReducer';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -18,13 +17,11 @@ const SignUp = () => {
   const handleImageUpload = async (userUid) => {
     try {
       if (userImage) {
-        // Check if the selected file is an image
         if (!userImage.type.startsWith('image/')) {
           console.error('Selected file is not an image.');
           return;
         }
 
-        // Check the file size (limit to, for example, 5MB)
         if (userImage.size > 5 * 1024 * 1024) {
           console.error(
             'Selected image is too large. Please select a smaller image.'
@@ -35,16 +32,15 @@ const SignUp = () => {
         const storageRef = ref(storage, `profileImages/${userUid}`);
         await uploadBytes(storageRef, userImage);
 
-        // Get the URL of the uploaded image
         const url = await getDownloadURL(storageRef);
-        return url; // Return the URL of the uploaded image
+        return url;
       }
 
-      return null; // Return null if no image was uploaded
+      return null;
     } catch (error) {
       console.error('Error uploading image:', error);
 
-      return null; // Return null in case of error
+      return null;
     }
   };
 
@@ -59,17 +55,14 @@ const SignUp = () => {
       );
       const user = userCredential.user;
 
-      // Upload user image to Firebase storage
       const photoURL = await handleImageUpload(user.uid);
 
       const loginDetails = {
         SignUpMethod: 'emailAndPassword',
         displayName: userName,
         phoneNumber: number,
-        photoURL: photoURL, // Set photoURL to the URL of the uploaded image
+        photoURL: photoURL,
       };
-
-      //  adding user details to Firestore
       const userDoc = collection(db, 'users');
       await addDoc(userDoc, {
         uid: user.uid,
