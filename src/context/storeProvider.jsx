@@ -42,10 +42,7 @@ const StoreProvider = ({ children }) => {
     });
   }, []);
   console.log(userEmailData);
-  // useEffect(() => {
-  //   findUserWithEmail();
-  //   console.log('run');
-  // }, [userLogInData]);
+
   return (
     <UserContext.Provider value={{ ...state, userEmailData, setUserLogInData }}>
       {children}

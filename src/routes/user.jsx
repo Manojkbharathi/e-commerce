@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/nav-bar/Navbar';
-import { useLocation } from 'react-router-dom';
 import '../components/user.css';
 import { signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase';
+import { auth, db } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useStoreConsumer } from '../context/storeProvider';
+import { updateDoc } from 'firebase/firestore';
 const User = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [newProfilePicture, setNewProfilePicture] = useState(null);
+  const [displayName, setDisplayName] = useState('');
   const navigate = useNavigate();
-
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
   const logout = async () => {
     signOut(auth)
       .then(() => {
@@ -18,7 +21,10 @@ const User = () => {
       })
       .catch((err) => console.log('error'));
   };
+
   const { user, userEmailData } = useStoreConsumer();
+  const userId = userEmailData.uid;
+  console.log(userId);
   console.log(userEmailData);
   const findUser =
     user &&
@@ -26,99 +32,79 @@ const User = () => {
       (item) => item.email === userEmailData.email && userEmailData.email
     );
   console.log(findUser);
+  const handleSave = async () => {
+    try {
+      await updateDoc(findUser, {
+        displayName: newName,
+      });
+      setIsEditing(!isEditing);
+      console.log('Profile updated successfully');
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
   return (
     <div className='user-profile'>
       <Navbar />
       <div className='user-container'>
         <div className='user-details'>
           <h2>User Profile</h2>
-          <>
-            <div className='input-section'>
-              <img className='user-img' src={findUser.photoURL} />
-              <input
-                type='text'
-                name='displayName'
-                placeholder='Name'
-                value={findUser?.displayName || ''}
-              />
-
-              <input
-                type='text'
-                name='email'
-                placeholder='Email'
-                value={findUser.email}
-                readOnly
-              />
-              <input
-                type='text'
-                name='phoneNumber'
-                placeholder='Ph number'
-                value={findUser.phoneNumber}
-              />
-
-              {/* <label htmlFor='city'>Select City</label>
-              <select readOnly>
-                <option readOnly>select place</option>
-                <option value='chennai'>chennai</option>
-                <option value='coimbatore'>coimbatore</option>
-                <option value='trichy'>trichy</option>
-                <option value='karur'>karur</option>
-                <option value='salem'>salem</option>
-                <option value='madurai'>madurai</option>
-                <option value='pollachi'>pollachi</option>
-                <option value='tiruppur'>tiruppur</option>
-                <option value='eorde'>eorde</option>
-                <option value='kadalur'>kadalur</option>
-                <option value='ooty'>ooty</option>
-              </select> */}
-            </div>
-            {/* <div className='flex'>
-            
-
-            <div className='gender-section'>
-              <h2>Gender</h2>
-              <div>
+          <div>
+            {isEditing ? (
+              <div className='input-section'>
                 <input
-                  type='radio'
-                  value='Male'
-                  id='1'
-                  name='gender'
-                  readOnly
+                  type='text'
+                  name='displayName'
+                  placeholder='Name'
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
                 />
-                <label htmlFor='Male'>Male</label>
               </div>
-              <div>
+            ) : (
+              <div className='input-section'>
+                <img className='user-img' src={findUser.photoURL} />
                 <input
-                  type='radio'
-                  value='Female'
-                  id='2'
-                  name='gender'
-                  readOnly
+                  type='text'
+                  name='displayName'
+                  placeholder='Name'
+                  value={findUser?.displayName}
                 />
-                <label htmlFor='Female'>Female</label>
               </div>
+            )}
 
-              <div>
-                <input
-                  type='radio'
-                  value='Other'
-                  id='3'
-                  name='gender'
-                  readOnly
-                />
-                <label htmlFor='Other'>Other</label>
-              </div>
-              <input type='file' accept='image/*' />
-            </div> */}
-            {/* </div> */}
-            <div>
-              <button className='button'>Edit profile</button>
-              <button className='button'>Save Changes</button>
-              <button className='button' onClick={logout}>
-                Logout
+            <input
+              type='text'
+              name='email'
+              placeholder='Email'
+              value={findUser.email}
+              readOnly
+            />
+            <input
+              type='text'
+              name='phoneNumber'
+              placeholder='Ph number'
+              value={findUser.phoneNumber}
+            />
+          </div>
+
+          <div>
+            {!isEditing ? (
+              <button className='button' onClick={handleEdit}>
+                Edit profile
               </button>
-            </div>
-          </>
+            ) : (
+              <>
+                <button className='button' onClick={handleSave}>
+                  Save Changes
+                </button>
+                <button className='button' onClick={handleEdit}>
+                  Cancel
+                </button>
+              </>
+            )}
+            <button onClick={logout}></button>
+          </div>
         </div>
       </div>
     </div>
