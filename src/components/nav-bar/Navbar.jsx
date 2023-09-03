@@ -61,7 +61,7 @@ const Navbar = ({ updateSearchQuery }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <select onChange={handleDropdownChange} value={selectedOption}>
-            <option value=''>profile</option>
+            <option defaultChecked>profile</option>
             <option value='user'>User profile</option>
             <option value='logout'>Logout</option>
           </select>

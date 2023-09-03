@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage'; // Import Firebase Storage
 import { getApp, getApps } from 'firebase/app';
 import 'firebase/storage';
@@ -14,8 +14,26 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
+const commerceGoogleProvider = new GoogleAuthProvider();
+const createUserDocumentFromAuth = async (userAuth) => {
+  if (!userAuth) return;
+  const userDocRef = doc(db, 'users', userAuth.uid);
+  console.log(userDocRef);
+  const userSnapShot = await getDoc(userDocRef);
+  console.log(userSnapShot);
+  console.log(userSnapShot.exists());
+  if (!userSnapShot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+    try {
+      await setDoc(userDocRef, { displayName, email, createdAt });
+    } catch (error) {
+      console.log('Error creating user', error.message);
+    }
+  }
+  return userDocRef;
+};
 const db = getFirestore(app);
-const storage = getStorage(app); // Initialize Firebase Storage
-export { provider, db, app, storage }; // Export the storage object
+const storage = getStorage(app);
+export { commerceGoogleProvider, db, app, storage, createUserDocumentFromAuth };
 export const auth = getAuth(app);
