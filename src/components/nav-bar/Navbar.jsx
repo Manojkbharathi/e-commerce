@@ -44,7 +44,7 @@ const Navbar = ({ updateSearchQuery }) => {
   return (
     <div>
       <div className='navbar'>
-        <Link to='/'>
+        <Link to='/products'>
           <div className='profile'>
             <p>e-shop</p>
             <span className='logo'>{<SiShopify />}</span>

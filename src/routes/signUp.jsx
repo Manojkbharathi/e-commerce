@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import { auth, db, storage } from '../utils/firebase';
@@ -63,12 +63,17 @@ const SignUp = () => {
         phoneNumber: number,
         photoURL: photoURL,
       };
-      const userDoc = collection(db, 'users');
-      await addDoc(userDoc, {
-        uid: user.uid,
-        email: user.email,
-        ...loginDetails,
-      });
+      const userDoc = doc(db, 'users', `${Date.now()}`);
+
+      await setDoc(
+        userDoc,
+        {
+          uid: `${Date.now()}`,
+          email: user.email,
+          ...loginDetails,
+        },
+        { merge: true }
+      );
 
       setEmail('');
       setPassword('');
