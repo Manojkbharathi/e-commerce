@@ -7,6 +7,7 @@ import { useStoreConsumer } from '../context/storeProvider';
 import { updateDoc, doc, getDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { PacmanLoader } from 'react-spinners';
 const User = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [displayName, setDisplayName] = useState('');
@@ -15,13 +16,14 @@ const User = () => {
   const [gender, setGender] = useState('');
   const [userImage, setUserImage] = useState(null);
   const { user, userEmailData } = useStoreConsumer();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const findUser =
     user &&
     user.find(
       (item) => item.email === userEmailData.email && userEmailData.email
     );
-  // console.log(findUser.photoURL);
+  console.log(findUser.photoURL);
   const userId = findUser.uid;
   const handleImageUpload = async (userId) => {
     try {
@@ -64,6 +66,7 @@ const User = () => {
   const handleSave = async () => {
     if (displayName && phoneNumber) {
       try {
+        setLoading(true);
         let updatedData = {
           displayName,
           phoneNumber,
@@ -93,7 +96,7 @@ const User = () => {
           }
         } else {
           // If no new image selected, retain the existing image URL
-          updatedData.photoURL = findUser.photoURL;
+          updatedData.photoURL = null;
         }
 
         const itemToEdit = doc(db, 'users', userId);
@@ -104,6 +107,8 @@ const User = () => {
         window.location.reload('/products');
       } catch (error) {
         console.error('Error in updating:', error);
+      } finally {
+        setLoading(false); // Set loading back to false
       }
     } else {
       console.log('Name or phone number is empty');
@@ -147,15 +152,17 @@ const User = () => {
             alt=''
           />
 
-          <div>
-            <div className='input-section'>
+          <div className={`user-data ${loading ? 'blur' : ''}`}>
+            <div className='img-section'>
               <input
                 type='file'
                 accept='image/*'
                 onChange={(e) => setUserImage(e.target.files[0])}
                 disabled={!isEditingPhoto}
               />
-              <button onClick={editPhoto}>Edit PHoto</button>
+              <button className='button' onClick={editPhoto}>
+                Edit PHoto
+              </button>
             </div>
 
             <div className='input-section'>
@@ -216,6 +223,16 @@ const User = () => {
                 <button className='button' onClick={handleSave}>
                   Save Changes
                 </button>
+                {loading && (
+                  <div className='loader-container'>
+                    <PacmanLoader
+                      color='#e62323'
+                      margin={-1}
+                      loading={loading}
+                      size={100}
+                    />
+                  </div>
+                )}
               </>
             )}
             <button className='button' onClick={logout}>

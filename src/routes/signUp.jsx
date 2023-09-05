@@ -4,7 +4,9 @@ import { collection, setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import { auth, db, storage } from '../utils/firebase';
-
+import { v4 as uuidv4 } from 'uuid';
+import { BeatLoader } from 'react-spinners';
+import '../index.css';
 const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -13,7 +15,7 @@ const SignUp = () => {
   const [userName, setUserName] = useState('');
   const [number, setNumber] = useState('');
   const [userImage, setUserImage] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const handleImageUpload = async (userUid) => {
     try {
       if (userImage) {
@@ -48,6 +50,8 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
+
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -56,19 +60,19 @@ const SignUp = () => {
       const user = userCredential.user;
 
       const photoURL = await handleImageUpload(user.uid);
-
+      const sameId = uuidv4();
       const loginDetails = {
         SignUpMethod: 'emailAndPassword',
         displayName: userName,
         phoneNumber: number,
         photoURL: photoURL,
       };
-      const userDoc = doc(db, 'users', `${Date.now()}`);
+      const userDoc = doc(db, 'users', sameId);
 
       await setDoc(
         userDoc,
         {
-          uid: `${Date.now()}`,
+          uid: sameId,
           email: user.email,
           ...loginDetails,
         },
@@ -86,7 +90,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='sign-up-container'>
+    <div className={`sign-up-container ${loading ? 'blur' : ''}`}>
       <div className='sign-up'>
         <form onSubmit={handleLogin}>
           <input
@@ -127,7 +131,11 @@ const SignUp = () => {
           <button type='submit' className='button'>
             SignUp
           </button>
-
+          {loading && (
+            <div className='loader-container'>
+              <BeatLoader size={100} color={'#19ccdf'} loading={loading} />
+            </div>
+          )}
           {error && <span>Wrong email or password</span>}
         </form>
       </div>

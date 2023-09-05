@@ -1,10 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import img1 from '../../src/assets/w-removebg-preview.png';
-import img2 from '../../src/assets/fire bolt.jpeg';
-import img3 from '../../src/assets/img3.jpeg';
-import img4 from '../../src/assets/262072_nwe2iq.jpeg';
-import img5 from '../../src/assets/next.jpeg';
-import img6 from '../../src/assets/fire.jpeg';
+
 export const advertiseItem = [
   {
     id: uuidv4(),

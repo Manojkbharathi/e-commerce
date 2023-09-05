@@ -8,6 +8,7 @@ import { IoMdLogOut } from 'react-icons/io';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import User from '../../routes/user';
 
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
@@ -25,11 +26,12 @@ const Navbar = ({ updateSearchQuery }) => {
       handleUser();
     } else if (selectedOption === 'logout') {
       logout();
+    } else {
+      User;
     }
   };
 
   const handleUser = () => {
-    console.log('Navigating to user profile...');
     navigate('/user');
   };
 
@@ -61,8 +63,10 @@ const Navbar = ({ updateSearchQuery }) => {
         <div className='nav-content'>
           <Link to='/products'>Home</Link>
           <select onChange={handleDropdownChange} value={selectedOption}>
-            <option Value=''>profile</option>
-            <option value='user'>User </option>
+            <option defaultValue='user' selected>
+              user
+            </option>
+            <option value='user'>Profile </option>
 
             <option value='logout'>Logout</option>
           </select>

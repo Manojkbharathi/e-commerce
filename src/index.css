@@ -104,3 +104,9 @@ form {
   color: black;
   margin-left: 3rem;
 }
+.blur {
+  filter: blur(4px);
+  pointer-events: none;
+}
+.loader-container {
+}
