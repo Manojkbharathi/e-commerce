@@ -9,6 +9,7 @@ const audio = () => {
   const handleClick = (item) => {
     const newItem = { ...item, id: uuidv4 };
     addToCart(newItem);
+    alert('Item Added to cart');
   };
   const [searchQuery, setSearchQuery] = useState('');
 

@@ -8,6 +8,7 @@ const Tv = () => {
   const handleClick = (item) => {
     const newItem = { ...item };
     addToCart(newItem);
+    alert('Item Added to cart');
   };
   const [searchQuery, setSearchQuery] = useState('');
   return (

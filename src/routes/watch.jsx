@@ -9,7 +9,8 @@ const Watch = () => {
 
   const handleClick = (item) => {
     const newItem = { ...item };
-    addToCart(newItem); // Add the clicked item to the cart using the context function
+    addToCart(newItem);
+    alert('Item Added to cart');
   };
   const [searchQuery, setSearchQuery] = useState('');
   return (

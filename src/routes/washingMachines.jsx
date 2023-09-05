@@ -3,12 +3,15 @@ import { washingMachineProducts } from '../components/data';
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import { v4 as uuidv4 } from 'uuid';
+import React, { Component } from 'react';
+import SweetAlert from 'sweetalert-react';
 const WashingMachines = () => {
   const { addToCart } = useCartGLobalContext();
 
   const handleClick = (item) => {
     const newItem = { ...item };
     addToCart(newItem);
+    alert('Item Added to cart');
   };
   const [searchQuery, setSearchQuery] = useState('');
   return (

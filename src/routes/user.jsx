@@ -11,7 +11,8 @@ const User = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [photoURL, setPhotoURL] = useState('');
+  const [isEditingPhoto, setIsEditingPhoto] = useState('');
+  const [gender, setGender] = useState('');
   const [userImage, setUserImage] = useState(null);
   const { user, userEmailData } = useStoreConsumer();
   const navigate = useNavigate();
@@ -20,16 +21,19 @@ const User = () => {
     user.find(
       (item) => item.email === userEmailData.email && userEmailData.email
     );
-  console.log(findUser);
+  // console.log(findUser.photoURL);
   const userId = findUser.uid;
   const handleImageUpload = async (userId) => {
     try {
       if (userImage) {
         if (!userImage.type.startsWith('image/')) {
+          return null;
+        }
+
+        if (!userImage.type || !userImage.type.startsWith('image/')) {
           console.error('Selected file is not an image.');
           return;
         }
-
         if (userImage.size > 5 * 1024 * 1024) {
           console.error(
             'Selected image is too large. Please select a smaller image.'
@@ -58,47 +62,51 @@ const User = () => {
   };
 
   const handleSave = async () => {
-    if (displayName && phoneNumber && userImage) {
-      console.log(userImage);
+    if (displayName && phoneNumber) {
       try {
-        if (!userImage) {
-          console.error('No image selected.');
-          return;
-        }
+        let updatedData = {
+          displayName,
+          phoneNumber,
+          gender,
+        };
 
-        if (!userImage.type || !userImage.type.startsWith('image/')) {
-          console.error('Selected file is not an image.');
-          return;
-        }
+        if (isEditingPhoto && userImage) {
+          if (!userImage.type || !userImage.type.startsWith('image/')) {
+            console.error('Selected file is not an image.');
+            return null;
+          }
+          if (userImage.size > 5 * 1024 * 1024) {
+            console.error(
+              'Selected image is too large. Please select a smaller image.'
+            );
+            return null;
+          }
 
-        if (userImage.size > 5 * 1024 * 1024) {
-          console.error(
-            'Selected image is too large. Please select a smaller image.'
-          );
-          return;
-        }
-
-        const imageURL = await handleImageUpload(userId); // Upload the image
-        console.log('Image URL:', imageURL);
-        if (imageURL) {
-          const itemToEdit = doc(db, 'users', userId);
-
-          await updateDoc(itemToEdit, {
-            displayName,
-            phoneNumber,
-            imageURL: imageURL,
-          });
-          setIsEditing(false);
-          navigate('/products');
-          window.location.reload();
+          const photoURL = await handleImageUpload(userId); // Upload the image
+          console.log('Image URL:', photoURL);
+          if (photoURL) {
+            updatedData.photoURL = photoURL;
+          } else {
+            // Handle the case where image upload fails
+            console.error('Image upload failed.');
+            return;
+          }
         } else {
-          console.log('Image URL is empty. Image upload might have failed.');
+          // If no new image selected, retain the existing image URL
+          updatedData.photoURL = findUser.photoURL;
         }
+
+        const itemToEdit = doc(db, 'users', userId);
+        await updateDoc(itemToEdit, updatedData);
+
+        setIsEditing(false);
+        navigate('/products');
+        window.location.reload('/products');
       } catch (error) {
         console.error('Error in updating:', error);
       }
     } else {
-      console.log('Name is empty');
+      console.log('Name or phone number is empty');
     }
   };
 
@@ -106,9 +114,11 @@ const User = () => {
     if (findUser) {
       setDisplayName(findUser.displayName || '');
       setPhoneNumber(findUser.phoneNumber || '');
-      setUserImage(findUser.imageURL || '');
+      setUserImage(findUser.photoURL || '');
+      setGender(findUser.gender);
     }
   }, [findUser]);
+  findUser.photoURL;
   const logout = async () => {
     signOut(auth)
       .then(() => {
@@ -121,7 +131,9 @@ const User = () => {
     setIsEditing(true);
     setDisplayName(findUser.displayName);
     setPhoneNumber(findUser.phoneNumber);
-    setUserImage(userImage);
+  };
+  const editPhoto = () => {
+    setIsEditingPhoto(true);
   };
   return (
     <div className='user-profile'>
@@ -129,7 +141,11 @@ const User = () => {
       <div className='user-container'>
         <div className='user-details'>
           <h2>User Profile</h2>
-          <img className='user-img' src={userImage} alt='' />
+          <img
+            className='user-img'
+            src={userImage || findUser.photoURL}
+            alt=''
+          />
 
           <div>
             <div className='input-section'>
@@ -137,8 +153,9 @@ const User = () => {
                 type='file'
                 accept='image/*'
                 onChange={(e) => setUserImage(e.target.files[0])}
-                disabled={!isEditing}
+                disabled={!isEditingPhoto}
               />
+              <button onClick={editPhoto}>Edit PHoto</button>
             </div>
 
             <div className='input-section'>
@@ -154,7 +171,6 @@ const User = () => {
             </div>
 
             <div className='input-section'>
-              {' '}
               <input
                 type='text'
                 name='email'
@@ -164,7 +180,6 @@ const User = () => {
               />
             </div>
             <div className='input-section'>
-              {' '}
               <input
                 type='text'
                 name='phoneNumber'
@@ -173,6 +188,22 @@ const User = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 disabled={!isEditing}
               />
+            </div>
+            <div className='input-section'>
+              <div className='profile-gender'>
+                <label>Gneder : </label>
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  id='gender'
+                  placeholder='gender'
+                >
+                  <option defaultChecked>Gender</option>
+                  <option value='Male'>Male</option>
+                  <option value='Women'>Women</option>
+                  <option value='Other'>Other</option>
+                </select>
+              </div>
             </div>
           </div>
           <div>
