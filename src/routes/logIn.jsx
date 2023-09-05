@@ -21,7 +21,6 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [userData, setUserData] = useState(null);
   const onLogin = async (e) => {
     e.preventDefault();
 
@@ -32,6 +31,7 @@ const LogIn = () => {
     );
     setUserLogInData(userCredential);
     navigate('/products');
+    location.reload();
   };
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -86,7 +86,6 @@ const LogIn = () => {
               <span>Email: </span>manojbharathi@gmail.com
             </p>
             <p>
-              {' '}
               <span>Password: </span>123456
             </p>
           </div>
