@@ -15,6 +15,7 @@ import {
   doc,
   setDoc,
 } from 'firebase/firestore';
+import '../index.css';
 const LogIn = () => {
   const { setUserLogInData } = useStoreConsumer();
   const navigate = useNavigate();

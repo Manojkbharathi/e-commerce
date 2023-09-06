@@ -204,6 +204,7 @@ const User = () => {
                   onChange={(e) => setGender(e.target.value)}
                   id='gender'
                   placeholder='gender'
+                  required
                 >
                   <option defaultChecked>Gender</option>
                   <option value='Male'>Male</option>

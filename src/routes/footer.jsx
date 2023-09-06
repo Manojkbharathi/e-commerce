@@ -31,6 +31,8 @@ const Footer = () => {
             onChange={(event) => handleOnChange(event)}
           >
             <div>
+              <h2> Send an email</h2>
+
               <input
                 type='text'
                 placeholder='Your Name'
@@ -58,31 +60,30 @@ const Footer = () => {
             </div>
           </form>
           <div className='aside'>
-            {' '}
             <div className='contact-id'>
-              <h2>Contact us</h2>
+              <h2 className='red-clr'>Contact us</h2>
               <a className='navlink' href='/products'>
-                <MdAttachEmail />
+                <MdAttachEmail className='footer-icon' />
                 email
               </a>
               <a className='navlink' href='/products'>
-                <ImLocation2 /> Location
+                <ImLocation2 className='footer-icon' /> Location
               </a>
               <a className='navlink' href='/products'>
-                <ImPhone /> Phone
+                <ImPhone className='footer-icon' /> Phone
               </a>
               <a className='navlink'>
-                <BsFillClockFill /> 8.00am - 9.00 pm
+                <BsFillClockFill className='footer-icon' /> 8.00am - 9.00 pm
               </a>
             </div>
             <div className='quick-link'>
-              <h2>Quick links</h2>
+              <h2 className='red-clr'>Quick links</h2>
               <div className='links'>
                 <a href='/products' className='navlink'>
                   Home
                 </a>
                 <Link className='navlink' to='/cart'>
-                  <MdFastfood />
+                  <MdFastfood className='footer-icon' />
                 </Link>
                 <Link className='navlink' to='/faq'>
                   Faq's
@@ -90,15 +91,15 @@ const Footer = () => {
               </div>
             </div>
             <div className='social-icons'>
-              <h2>Follow us</h2>
+              <h2 className='red-clr'>Follow us</h2>
               <a className='navlink' href='/products'>
-                <AiFillInstagram /> Instagram
+                <AiFillInstagram className='footer-icon' /> Instagram
               </a>
               <a className='navlink' href='/products'>
-                <AiOutlineFacebook /> Facebook
+                <AiOutlineFacebook className='footer-icon' /> Facebook
               </a>
               <a className='navlink' href='/products'>
-                <AiOutlineTwitter /> Twitter
+                <AiOutlineTwitter className='footer-icon' /> Twitter
               </a>
             </div>
           </div>

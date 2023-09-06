@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { db, auth } from '../utils/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { getUseData } from '../utils/fetchFunction';
+import { getUserData } from '../utils/fetchFunction';
 import userReducer from '../utils/reducers/userReducer';
 import { onAuthStateChanged } from 'firebase/auth';
 const UserContext = createContext();
@@ -21,7 +21,7 @@ const StoreProvider = ({ children }) => {
   const [userLogInData, setUserLogInData] = useState('');
   const [findUserArray, setFindUserArray] = useState('');
   const fetchData = async () => {
-    await getUseData().then((data) => {
+    await getUserData().then((data) => {
       dispatch({ type: 'SET_USER_DATA', userData: data });
     });
   };

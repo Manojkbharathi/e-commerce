@@ -13,9 +13,7 @@
   justify-content: space-evenly;
   gap: 5rem;
 }
-.social-icons {
-  font-size: 1rem;
-}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -93,4 +91,11 @@ input {
   display: flex;
   width: 100vh;
   justify-content: space-between;
+}
+.footer-icon {
+  margin-right: 15px;
+}
+.red-clr {
+  color: red;
+  margin: 1rem;
 }

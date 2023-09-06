@@ -1,7 +1,7 @@
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 import { db } from './firebase';
 
-const getUseData = async () => {
+const getUserData = async () => {
   const userData = await getDocs(collection(db, 'users'));
 
   return userData.docs.map((doc) => ({
@@ -9,4 +9,4 @@ const getUseData = async () => {
     id: doc.id,
   }));
 };
-export { getUseData };
+export { getUserData };

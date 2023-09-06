@@ -23,11 +23,6 @@
   align-items: center;
 }
 
-input {
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-}
 .img-section {
   display: flex;
   align-items: center;
@@ -43,5 +38,4 @@ input {
 .loader-container {
   position: relative;
   top: -18rem;
-  filter: blur(4px);
 }

@@ -91,9 +91,11 @@ const SignUp = () => {
 
   return (
     <div className={`sign-up-container ${loading ? 'blur' : ''}`}>
+      <h1 className='title'>Sign up here</h1>
       <div className='sign-up'>
         <form onSubmit={handleLogin}>
           <input
+            className='img-input'
             type='file'
             accept='image/*'
             onChange={(e) => setUserImage(e.target.files[0])}
