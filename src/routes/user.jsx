@@ -81,9 +81,7 @@ const User = () => {
             return null;
           }
           if (userImage.size > 5 * 1024 * 1024) {
-            console.error(
-              'Selected image is too large. Please select a smaller image.'
-            );
+            console.error(alert('Selected image is too high quality'));
             return null;
           }
           const photoURL = await handleImageUpload(userId); // Upload the image
@@ -206,7 +204,7 @@ const User = () => {
                     id='gender'
                     placeholder='gender'
                     required
-                    disabled={!isEditingPhoto}
+                    disabled={!isEditing}
                   >
                     <option defaultChecked>Gender</option>
                     <option value='Male'>Male</option>
