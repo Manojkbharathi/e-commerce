@@ -49,8 +49,11 @@ const Cart = () => {
         </div>
         {cart.length > 0 && (
           <section className='cart-footer'>
-            <button className='clear-btn' onClick={() => clearCart()}>
-              Clear cart
+            <button
+              className='clear-btn'
+              onClick={() => alert('your order is placed') || clearCart()}
+            >
+              Buy now
             </button>
             <h1 className='total'>
               Total:<span> ₹{`${totalPrice.toFixed(2)}`}</span>

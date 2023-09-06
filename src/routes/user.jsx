@@ -23,8 +23,10 @@ const User = () => {
     user.find(
       (item) => item.email === userEmailData.email && userEmailData.email
     );
-  console.log(findUser.photoURL);
   const userId = findUser.uid;
+
+  console.log(findUser);
+  // const userId = findUser.uid;
   const handleImageUpload = async (userId) => {
     try {
       if (userImage) {
@@ -84,7 +86,6 @@ const User = () => {
             );
             return null;
           }
-
           const photoURL = await handleImageUpload(userId); // Upload the image
           console.log('Image URL:', photoURL);
           if (photoURL) {
@@ -108,7 +109,7 @@ const User = () => {
       } catch (error) {
         console.error('Error in updating:', error);
       } finally {
-        setLoading(false); // Set loading back to false
+        setLoading(false);
       }
     } else {
       console.log('Name or phone number is empty');
@@ -165,52 +166,54 @@ const User = () => {
               </button>
             </div>
 
-            <div className='input-section'>
-              <input
-                type='text'
-                name='displayName'
-                placeholder='Name'
-                value={displayName}
-                isEditing
-                onChange={(e) => setDisplayName(e.target.value)}
-                disabled={!isEditing}
-              />
-            </div>
+            <div className='input-container'>
+              <div className='input-section'>
+                <input
+                  type='text'
+                  name='displayName'
+                  placeholder='Name'
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  disabled={!isEditing}
+                />
+              </div>
 
-            <div className='input-section'>
-              <input
-                type='text'
-                name='email'
-                placeholder='Email'
-                value={findUser.email}
-                readOnly
-              />
-            </div>
-            <div className='input-section'>
-              <input
-                type='text'
-                name='phoneNumber'
-                placeholder='Ph number'
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                disabled={!isEditing}
-              />
-            </div>
-            <div className='input-section'>
-              <div className='profile-gender'>
-                <label>Gneder : </label>
-                <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  id='gender'
-                  placeholder='gender'
-                  required
-                >
-                  <option defaultChecked>Gender</option>
-                  <option value='Male'>Male</option>
-                  <option value='Women'>Women</option>
-                  <option value='Other'>Other</option>
-                </select>
+              <div className='input-section'>
+                <input
+                  type='text'
+                  name='email'
+                  placeholder='Email'
+                  value={findUser.email}
+                  readOnly
+                />
+              </div>
+              <div className='input-section'>
+                <input
+                  type='text'
+                  name='phoneNumber'
+                  placeholder='Ph number'
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  disabled={!isEditing}
+                />
+              </div>
+              <div className='input-section'>
+                <div className='profile-gender'>
+                  <label>Gender : </label>
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    id='gender'
+                    placeholder='gender'
+                    required
+                    disabled={!isEditingPhoto}
+                  >
+                    <option defaultChecked>Gender</option>
+                    <option value='Male'>Male</option>
+                    <option value='Women'>Women</option>
+                    <option value='Other'>Other</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>

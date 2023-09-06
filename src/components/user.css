@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
 
 .gender-section {
@@ -38,4 +39,8 @@
 .loader-container {
   position: relative;
   top: -18rem;
+}
+.input-container {
+  display: flex;
+  gap: 1rem;
 }

@@ -1,12 +1,8 @@
 import React, { useState, useContext } from 'react';
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useStoreConsumer } from '../context/storeProvider';
-import { auth, db, createUserDocumentFromAuth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../utils/firebase';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   collection,
   where,
@@ -33,19 +29,6 @@ const LogIn = () => {
     setUserLogInData(userCredential);
     navigate('/products');
     location.reload();
-  };
-  const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      const { user } = await signInWithPopup(auth, provider);
-      const result = await createUserDocumentFromAuth(user);
-
-      setUserLogInData(user);
-      navigate('/products');
-    } catch (error) {
-      alert('Google Sign-In failed. Please try again.');
-      console.error('Error:', error);
-    }
   };
 
   return (
@@ -74,8 +57,8 @@ const LogIn = () => {
           Sign in
         </button>
       </form>
-      <button className='button' onClick={handleGoogleSignIn}>
-        SignIn with Google
+      <button className='button' onClick={() => navigate('/')}>
+        Add account
       </button>
       <div>
         <button className='button' onClick={() => setIsOpen(!isOpen)}>

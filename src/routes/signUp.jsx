@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-import { auth, db, storage } from '../utils/firebase';
+import {
+  auth,
+  db,
+  storage,
+  createUserDocumentFromAuth,
+} from '../utils/firebase';
+import { useStoreConsumer } from '../context/storeProvider';
+
 import { v4 as uuidv4 } from 'uuid';
-import { BeatLoader } from 'react-spinners';
+import { FadeLoader } from 'react-spinners';
 import '../index.css';
 const SignUp = () => {
+  const { setUserLogInData } = useStoreConsumer();
+
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
@@ -16,6 +29,8 @@ const SignUp = () => {
   const [number, setNumber] = useState('');
   const [userImage, setUserImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const sameId = uuidv4();
+
   const handleImageUpload = async (userUid) => {
     try {
       if (userImage) {
@@ -60,7 +75,6 @@ const SignUp = () => {
       const user = userCredential.user;
 
       const photoURL = await handleImageUpload(user.uid);
-      const sameId = uuidv4();
       const loginDetails = {
         SignUpMethod: 'emailAndPassword',
         displayName: userName,
@@ -88,11 +102,28 @@ const SignUp = () => {
       console.error('Error creating user:', error);
     }
   };
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const { user } = await signInWithPopup(auth, provider);
+      const userDoc = doc(db, 'users', sameId);
 
+      await setDoc(userDoc, {
+        uid: sameId,
+        email: user.email,
+        displayName: user.displayName,
+      });
+      setUserLogInData(user);
+      navigate('/products');
+    } catch (error) {
+      alert('Google Sign-In failed. Please try again.');
+      console.error('Error:', error);
+    }
+  };
   return (
-    <div className={`sign-up-container ${loading ? 'blur' : ''}`}>
+    <div className='sign-up-container'>
       <h1 className='title'>Sign up here</h1>
-      <div className='sign-up'>
+      <div className={`sign-up ${loading ? 'blur' : ''}`}>
         <form onSubmit={handleLogin}>
           <input
             className='img-input'
@@ -133,15 +164,22 @@ const SignUp = () => {
           <button type='submit' className='button'>
             SignUp
           </button>
-          {loading && (
-            <div className='loader-container'>
-              <BeatLoader size={100} color={'#19ccdf'} loading={loading} />
-            </div>
-          )}
+
           {error && <span>Wrong email or password</span>}
         </form>
       </div>
-
+      <button className='button' onClick={handleGoogleSignIn}>
+        SignIn with Google
+      </button>
+      {loading && (
+        <div className='loader-container'>
+          <FadeLoader
+            size={100}
+            color='rgba(248, 12, 12, 1)'
+            loading={loading}
+          />
+        </div>
+      )}
       <button className='button' onClick={() => navigate('/logIn')}>
         Already have an Account? Log in
       </button>
