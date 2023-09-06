@@ -23,10 +23,9 @@ const User = () => {
     user.find(
       (item) => item.email === userEmailData.email && userEmailData.email
     );
-  const userId = findUser.uid;
+  const userId = findUser.id;
 
-  console.log(findUser);
-  // const userId = findUser.uid;
+  console.log(findUser.id);
   const handleImageUpload = async (userId) => {
     try {
       if (userImage) {
@@ -74,7 +73,10 @@ const User = () => {
           phoneNumber,
           gender,
         };
-
+        if (gender === '' || gender === 'Gender') {
+          alert('Please select a gender');
+          return;
+        }
         if (isEditingPhoto && userImage) {
           if (!userImage.type || !userImage.type.startsWith('image/')) {
             console.error('Selected file is not an image.');
