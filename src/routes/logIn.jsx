@@ -3,14 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useStoreConsumer } from '../context/storeProvider';
 import { auth, db } from '../utils/firebase';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  collection,
-  where,
-  query,
-  getDocs,
-  doc,
-  setDoc,
-} from 'firebase/firestore';
+
 import '../index.css';
 const LogIn = () => {
   const { setUserLogInData } = useStoreConsumer();
@@ -26,7 +19,7 @@ const LogIn = () => {
       email,
       password
     );
-    setUserLogInData(userCredential);
+    userCredential;
     navigate('/products');
     location.reload();
   };
