@@ -2,6 +2,7 @@ import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import '../components/cart.css';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Cart = () => {
   const {
     cart,
@@ -11,7 +12,18 @@ const Cart = () => {
     decreaseItem,
     totalPrice,
   } = useCartGLobalContext();
-
+  const handleBuy = () => {
+    if (cart.length > 0) {
+      Swal.fire({
+        title: 'Done',
+        text: `Your order placed $ ${totalPrice}`,
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      });
+      clearCart();
+    }
+  };
   return (
     <div className='cart'>
       <Navbar />
@@ -49,10 +61,7 @@ const Cart = () => {
         </div>
         {cart.length > 0 && (
           <section className='cart-footer'>
-            <button
-              className='clear-btn'
-              onClick={() => alert('your order is placed') || clearCart()}
-            >
+            <button className='clear-btn' onClick={handleBuy}>
               Buy now
             </button>
             <h1 className='total'>
