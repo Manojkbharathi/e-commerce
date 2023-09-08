@@ -26,9 +26,6 @@ const StoreProvider = ({ children }) => {
     });
   };
 
-  console.log(userData);
-  // setFindUserArray(findUser);
-
   useEffect(() => {
     fetchData();
   }, []);
