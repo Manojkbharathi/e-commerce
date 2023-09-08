@@ -4,12 +4,20 @@ import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 const audio = () => {
   const { addToCart } = useCartGLobalContext();
   const handleClick = (item) => {
     const newItem = { ...item, id: uuidv4 };
     addToCart(newItem);
-    alert('Item Added to cart');
+    Swal.fire({
+      title: 'Done',
+      text: `${item.text} Added to the cart`,
+      imageUrl: item.image,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    });
   };
   const [searchQuery, setSearchQuery] = useState('');
 

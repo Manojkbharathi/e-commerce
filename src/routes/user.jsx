@@ -71,6 +71,11 @@ const User = () => {
           displayName,
           phoneNumber,
           gender,
+          // Only update photoURL if isEditingPhoto is true and a new image is selected
+          photoURL:
+            isEditingPhoto && userImage
+              ? await handleImageUpload(userId)
+              : findUser.photoURL,
         };
         if (gender === '' || gender === 'Gender') {
           alert('Please select a gender');
@@ -79,22 +84,25 @@ const User = () => {
         if (isEditingPhoto && userImage) {
           if (!userImage.type || !userImage.type.startsWith('image/')) {
             console.error('Selected file is not an image.');
+            setLoading(false);
             return null;
           }
           if (userImage.size > 5 * 1024 * 1024) {
             console.error(alert('Selected image is too high quality'));
+            setLoading(false);
             return null;
           }
           const photoURL = await handleImageUpload(userId); // Upload the image
           console.log('Image URL:', photoURL);
           if (photoURL) {
             updatedData.photoURL = photoURL;
+            setUserImage(photoURL);
           } else {
             console.error('Image upload failed.');
             return;
           }
         } else {
-          updatedData.photoURL = null;
+          updatedData.photoURL = findUser.photoURL;
         }
 
         const itemToEdit = doc(db, 'users', userId);
@@ -134,9 +142,11 @@ const User = () => {
     setIsEditing(true);
     setDisplayName(findUser.displayName);
     setPhoneNumber(findUser.phoneNumber);
+    setUserImage(findUser.photoURL || userImage);
   };
   const editPhoto = () => {
     setIsEditingPhoto(true);
+    setIsEditing(true);
   };
   return (
     <div className='user-profile'>
@@ -146,19 +156,24 @@ const User = () => {
           <h2>User Profile</h2>
           <img
             className='user-img'
-            src={userImage || findUser.photoURL}
+            src={findUser.photoURL || userImage}
             alt=''
           />
 
           <div className={`user-data ${loading ? 'blur' : ''}`}>
             <div className='img-section'>
               <input
+                className='img-input'
                 type='file'
                 accept='image/*'
                 onChange={(e) => setUserImage(e.target.files[0])}
                 disabled={!isEditingPhoto}
               />
-              <button className='button' onClick={editPhoto}>
+              <button
+                className='button edit'
+                onClick={editPhoto}
+                disabled={!isEditing}
+              >
                 Edit PHoto
               </button>
             </div>

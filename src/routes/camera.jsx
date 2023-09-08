@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/nav-bar/Navbar';
-
+import Swal from 'sweetalert2';
 import { cameraProducts } from '../components/data';
 import { useCartGLobalContext } from '../context/context';
 const Tv = () => {
@@ -8,7 +8,14 @@ const Tv = () => {
   const handleClick = (item) => {
     const newItem = { ...item };
     addToCart(newItem);
-    alert('Item Added to cart');
+    Swal.fire({
+      title: 'Done',
+      text: `${item.text} Added to the cart`,
+      imageUrl: item.image,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    });
   };
   const [searchQuery, setSearchQuery] = useState('');
   return (

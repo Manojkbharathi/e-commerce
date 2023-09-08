@@ -44,3 +44,6 @@
   display: flex;
   gap: 1rem;
 }
+.edit {
+  background-color: white;
+}
