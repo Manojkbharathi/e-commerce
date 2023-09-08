@@ -26,7 +26,7 @@ const StoreProvider = ({ children }) => {
     });
   };
 
-  console.log(userData);
+  // console.log(findUser);
   // setFindUserArray(findUser);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const StoreProvider = ({ children }) => {
       console.log(userLogInData);
     });
   }, []);
-  console.log(state);
+  console.log(userEmailData);
 
   return (
     <UserContext.Provider value={{ ...state, userEmailData, setUserLogInData }}>
