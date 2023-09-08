@@ -26,6 +26,12 @@ const StoreProvider = ({ children }) => {
     });
   };
 
+<<<<<<< HEAD
+=======
+  console.log(userData);
+  // setFindUserArray(findUser);
+
+>>>>>>> 7f1e9319c6ddc35942e547e74efe37fa8fe2dfb4
   useEffect(() => {
     fetchData();
   }, []);
