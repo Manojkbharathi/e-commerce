@@ -48,7 +48,6 @@ const User = () => {
           storage,
           `profileImages/${Date.now()}/${userId}`
         );
-        console.log(storageRef);
         const uploadTask = uploadBytes(storageRef, userImage);
         await uploadTask;
         const url = await getDownloadURL(storageRef);
@@ -91,12 +90,10 @@ const User = () => {
           if (photoURL) {
             updatedData.photoURL = photoURL;
           } else {
-            // Handle the case where image upload fails
             console.error('Image upload failed.');
             return;
           }
         } else {
-          // If no new image selected, retain the existing image URL
           updatedData.photoURL = null;
         }
 
