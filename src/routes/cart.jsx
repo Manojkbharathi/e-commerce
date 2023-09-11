@@ -1,9 +1,10 @@
 import Navbar from '../components/nav-bar/Navbar';
 import { useCartGLobalContext } from '../context/context';
 import '../components/cart.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const Cart = () => {
+  const navigate = useNavigate();
   const {
     cart,
     clearCart,
@@ -21,8 +22,9 @@ const Cart = () => {
         imageHeight: 200,
         imageAlt: 'Custom image',
       });
-      clearCart();
     }
+    navigate('/products');
+    clearCart();
   };
   return (
     <div className='cart'>

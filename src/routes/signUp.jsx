@@ -4,15 +4,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { collection, setDoc, doc } from 'firebase/firestore';
+import { collection, setDoc, doc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-import {
-  auth,
-  db,
-  storage,
-  createUserDocumentFromAuth,
-} from '../utils/firebase';
+import { auth, db, storage } from '../utils/firebase';
 import { useStoreConsumer } from '../context/storeProvider';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -74,7 +69,7 @@ const SignUp = () => {
       );
       const user = userCredential.user;
 
-      const photoURL = await handleImageUpload(user.uid);
+      const photoURL = await handleImageUpload(user.id);
       const loginDetails = {
         SignUpMethod: 'emailAndPassword',
         displayName: userName,
@@ -86,7 +81,7 @@ const SignUp = () => {
       await setDoc(
         userDoc,
         {
-          uid: sameId,
+          id: sameId,
           email: user.email,
           ...loginDetails,
         },
@@ -106,20 +101,33 @@ const SignUp = () => {
     const provider = new GoogleAuthProvider();
     try {
       const { user } = await signInWithPopup(auth, provider);
-      const userDoc = doc(db, 'users', sameId);
 
-      await setDoc(userDoc, {
-        uid: sameId,
-        email: user.email,
-        displayName: user.displayName,
-      });
-      setUserLogInData(user);
-      navigate('/products');
+      // Check if the user already exists in Firestore
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
+
+      if (userDocSnapshot.exists()) {
+        // User already exists, no need to create a new document
+        setUserLogInData(user);
+        navigate('/products');
+        window.location.reload('/products');
+      } else {
+        // User doesn't exist in Firestore, create a new document
+        await setDoc(userDocRef, {
+          id: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        });
+
+        setUserLogInData(user);
+        navigate('/products');
+        window.location.reload('/products');
+      }
     } catch (error) {
-      alert('Google Sign-In failed. Please try again.');
       console.error('Error:', error);
     }
   };
+
   return (
     <div className='sign-up-container'>
       <h1 className='title'>Sign up here</h1>

@@ -34,8 +34,6 @@ const StoreProvider = ({ children }) => {
       if (userLogInData) {
         setUserEmailData(userLogInData.providerData[0]);
       }
-
-      console.log(userLogInData);
     });
   }, []);
   console.log(state);

@@ -25,7 +25,6 @@ const User = () => {
     );
   const userId = findUser.id;
 
-  console.log(findUser.id);
   const handleImageUpload = async (userId) => {
     try {
       if (userImage) {
@@ -44,10 +43,7 @@ const User = () => {
           return;
         }
 
-        const storageRef = ref(
-          storage,
-          `profileImages/${Date.now()}/${userId}`
-        );
+        const storageRef = ref(storage, `profileImages/${userId}`);
         const uploadTask = uploadBytes(storageRef, userImage);
         await uploadTask;
         const url = await getDownloadURL(storageRef);
@@ -68,41 +64,19 @@ const User = () => {
       try {
         setLoading(true);
         let updatedData = {
+          ...findUser,
           displayName,
           phoneNumber,
-          gender,
-          // Only update photoURL if isEditingPhoto is true and a new image is selected
-          photoURL:
-            isEditingPhoto && userImage
-              ? await handleImageUpload(userId)
-              : findUser.photoURL,
         };
-        if (gender === '' || gender === 'Gender') {
-          alert('Please select a gender');
-          return;
-        }
+
         if (isEditingPhoto && userImage) {
-          if (!userImage.type || !userImage.type.startsWith('image/')) {
-            console.error('Selected file is not an image.');
-            setLoading(false);
-            return null;
-          }
-          if (userImage.size > 5 * 1024 * 1024) {
-            console.error(alert('Selected image is too high quality'));
-            setLoading(false);
-            return null;
-          }
           const photoURL = await handleImageUpload(userId); // Upload the image
-          console.log('Image URL:', photoURL);
           if (photoURL) {
             updatedData.photoURL = photoURL;
-            setUserImage(photoURL);
           } else {
             console.error('Image upload failed.');
             return;
           }
-        } else {
-          updatedData.photoURL = findUser.photoURL;
         }
 
         const itemToEdit = doc(db, 'users', userId);
@@ -129,7 +103,6 @@ const User = () => {
       setGender(findUser.gender);
     }
   }, [findUser]);
-  findUser.photoURL;
   const logout = async () => {
     signOut(auth)
       .then(() => {

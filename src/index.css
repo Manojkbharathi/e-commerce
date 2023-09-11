@@ -40,8 +40,14 @@ h4:hover {
   justify-content: center;
 }
 .sign-up-container {
+  background-image: url('./assets/arrangement-black-friday-shopping-carts-with-copy-space.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover;
   display: flex;
   height: 100vh;
+  width: 100vw;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -72,14 +78,23 @@ input {
 }
 
 .log-in {
+  background-image: url(./assets//business-buy-card-commercial-wallpaper-836f37178e025794e66a6af4640d7f0a.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
-  margin: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
 }
-
+.log-in h1 {
+  margin: 2rem;
+  color: black;
+}
 .user-img {
   height: 12rem;
   width: 12rem;
@@ -111,5 +126,5 @@ input {
 }
 .title {
   margin: 2rem;
-  color: rgb(2, 114, 118);
+  color: rgb(85, 214, 219);
 }
