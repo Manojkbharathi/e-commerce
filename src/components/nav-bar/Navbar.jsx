@@ -71,7 +71,10 @@ const Navbar = ({ updateSearchQuery }) => {
             <option value='logout'>Logout</option>
           </select>
           <Link to='/cart'>
-            🛒 <span className='cart-count'>{totalQuantity}</span>
+            <div className='add-cart'>
+              {' '}
+              🛒 <span className='cart-count'>{totalQuantity}</span>
+            </div>
           </Link>
         </div>
       </div>

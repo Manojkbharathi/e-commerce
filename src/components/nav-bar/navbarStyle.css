@@ -67,4 +67,12 @@ select {
     position: relative;
     left: -1rem;
   }
+  select {
+    position: relative;
+    left: -2rem;
+  }
+
+  .add-cart {
+    margin-right: 2rem;
+  }
 }

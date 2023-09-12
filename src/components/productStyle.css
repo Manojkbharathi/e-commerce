@@ -142,6 +142,10 @@
   .slider {
     width: 100vw;
     position: relative;
-    left: 10%;
+    left: 3rem;
+  }
+  .ad-img {
+    height: 10rem;
+    width: 100%;
   }
 }
