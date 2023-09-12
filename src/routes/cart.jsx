@@ -53,6 +53,8 @@ const Cart = () => {
                 >
                   -
                 </button>
+              </div>
+              <div>
                 <h2 className='quantity'>
                   Quantity:
                   <span>{item.quantity}</span>

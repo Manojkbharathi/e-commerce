@@ -9,7 +9,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import User from '../../routes/user';
-
+import logo from '../../assets/logo.png';
 const Navbar = ({ updateSearchQuery }) => {
   const { totalQuantity } = useCartGLobalContext();
   const navigate = useNavigate();
@@ -44,16 +44,16 @@ const Navbar = ({ updateSearchQuery }) => {
   };
 
   return (
-    <div>
+    <div className='nav'>
       <div className='navbar'>
         <Link to='/products'>
           <div className='profile'>
-            <p>e-shop</p>
-            <span className='logo'>{<SiShopify />}</span>
+            <img className='logo' src={logo} alt='' />
           </div>
         </Link>
         <div className='search-bar'>
           <input
+            className='search-bar'
             type='text'
             placeholder='Search'
             onChange={handleSearchChange}

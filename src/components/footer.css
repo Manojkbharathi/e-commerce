@@ -4,8 +4,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  margin: 8rem;
-  width: 90%;
+  padding-bottom: 5rem;
 }
 .footer-container {
   display: flex;
@@ -98,4 +97,23 @@ input {
 .red-clr {
   color: red;
   margin: 1rem;
+}
+@media screen and (max-width: 855px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .social-icons {
+    position: relative;
+    left: -1rem;
+  }
 }

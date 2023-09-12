@@ -138,3 +138,10 @@
 .s-icons:hover {
   color: red;
 }
+@media screen and (max-width: 655px) {
+  .slider {
+    width: 100vw;
+    position: relative;
+    left: 10%;
+  }
+}
