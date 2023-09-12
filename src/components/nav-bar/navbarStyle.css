@@ -50,6 +50,9 @@ select {
 }
 
 @media screen and (max-width: 580px) {
+  .navbar {
+    width: 100vw;
+  }
   .search-bar {
     width: 8rem;
     padding: 0.5rem 2rem;
