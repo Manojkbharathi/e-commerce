@@ -19,10 +19,6 @@
   transform: rotateZ(-10deg);
   transition: 1s ease;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-}
 
 .profile {
   display: flex;
@@ -32,13 +28,7 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: yellow;
 }
-.logo {
-  color: white;
-}
-.nav-content {
-  display: flex;
-  gap: 2.75rem;
-}
+
 .single-product {
   display: flex;
   flex-direction: column;
@@ -140,12 +130,15 @@
 }
 @media screen and (max-width: 655px) {
   .slider {
-    width: 100vw;
     position: relative;
     left: 3rem;
+    width: 20rem;
   }
   .ad-img {
     height: 10rem;
-    width: 100%;
+    width: 20rem;
+  }
+  .home {
+    overflow: hidden;
   }
 }

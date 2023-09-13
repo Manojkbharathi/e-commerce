@@ -1,9 +1,13 @@
 .navbar {
   background-color: rgb(0, 0, 0);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding-bottom: 2rem;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cart-icon {
@@ -27,6 +31,8 @@ select {
   gap: 0;
 }
 .nav-content {
+  display: flex;
+  gap: 10px;
   position: relative;
   left: -2rem;
 }
@@ -48,6 +54,19 @@ select {
     left: -5%;
   }
 }
+@media screen and (max-width: 980px) {
+  .search-bar {
+    width: 9rem;
+    padding: 0.5rem 2rem;
+    position: relative;
+    left: -2.25rem;
+    margin-right: 0.5rem;
+  }
+  .nav-content {
+    position: relative;
+    left: -4rem;
+  }
+}
 
 @media screen and (max-width: 580px) {
   .navbar {
@@ -65,14 +84,20 @@ select {
   }
   .nav-content {
     position: relative;
-    left: -1rem;
+    display: flex;
+
+    align-items: center;
   }
   select {
     position: relative;
-    left: -2rem;
+    left: -5rem;
   }
 
   .add-cart {
-    margin-right: 2rem;
+    margin-right: 1rem;
+  }
+  select {
+    position: relative;
+    left: -10px;
   }
 }
