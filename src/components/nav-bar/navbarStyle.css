@@ -32,7 +32,7 @@ select {
 }
 .nav-content {
   display: flex;
-  gap: 10px;
+  gap: 5rem;
   position: relative;
   left: -2rem;
 }
@@ -47,6 +47,7 @@ select {
   .nav-content {
     position: relative;
     left: -2rem;
+    gap: 2rem;
   }
   .search-bar {
     padding: 1rem 1rem;
@@ -65,6 +66,7 @@ select {
   .nav-content {
     position: relative;
     left: -4rem;
+    gap: 1rem;
   }
 }
 

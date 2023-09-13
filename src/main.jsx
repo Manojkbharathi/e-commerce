@@ -19,6 +19,7 @@ import {
   Ac,
   LogIn,
   User,
+  Faq,
 } from './routes/index.js';
 import userReducer from './utils/reducers/userReducer.js';
 import { AuthProvider } from './context/auth.jsx';
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: 'user',
         element: <User />,
+      },
+      {
+        path: 'faq',
+        element: <Faq />,
       },
     ],
   },

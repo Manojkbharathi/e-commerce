@@ -1,0 +1,23 @@
+.center h2 {
+  text-align: center;
+  padding: 2rem;
+}
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 3rem;
+  line-height: 2rem;
+}
+.faq p {
+  color: rgb(168, 162, 162);
+  width: 50vh;
+}
+.faq h2 {
+  text-align: center;
+}
+.faq h3 {
+  position: relative;
+  left: -1.25rem;
+}

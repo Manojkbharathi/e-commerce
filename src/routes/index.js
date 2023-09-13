@@ -12,6 +12,7 @@ import Laptop from './laptop';
 import Ac from './ac';
 import LogIn from './logIn';
 import User from './user';
+import Faq from './faq';
 export {
   ErrorPage,
   Watch,
@@ -27,4 +28,5 @@ export {
   Ac,
   LogIn,
   User,
+  Faq,
 };
