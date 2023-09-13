@@ -131,12 +131,12 @@
 @media screen and (max-width: 655px) {
   .slider {
     position: relative;
-    left: 3rem;
-    width: 20rem;
+    left: 2rem;
+    width: 85%;
   }
   .ad-img {
     height: 10rem;
-    width: 20rem;
+    width: 100vw;
   }
   .home {
     overflow: hidden;
@@ -185,5 +185,11 @@
   }
   .individual-item p {
     width: 8rem;
+  }
+}
+@media screen and (max-width: 555px) {
+  .ad-img {
+    height: 10rem;
+    width: 100vw;
   }
 }

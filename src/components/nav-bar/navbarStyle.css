@@ -38,6 +38,10 @@ select {
 }
 
 @media screen and (max-width: 930px) {
+  .navbar {
+    font-size: 1rem;
+  }
+
   .logo {
     width: 95px;
   }
@@ -95,6 +99,7 @@ select {
   select {
     position: relative;
     left: -5rem;
+    font-size: 1rem;
   }
 
   .add-cart {
@@ -103,5 +108,9 @@ select {
   select {
     position: relative;
     left: -10px;
+  }
+  .font {
+    font-size: 1rem;
+    margin: 5px;
   }
 }
