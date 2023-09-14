@@ -126,7 +126,7 @@ const User = () => {
       <Navbar />
       <div className='user-container'>
         <div className='user-details'>
-          <h2>User Profile</h2>
+          <h2 className='use'>User Profile</h2>
           <img
             className='user-img'
             src={findUser.photoURL || userImage}

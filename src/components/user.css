@@ -12,7 +12,9 @@
   justify-content: center;
   gap: 2rem;
 }
-
+.use {
+  margin-bottom: 1rem;
+}
 .gender-section {
   display: flex;
   flex-direction: column;
