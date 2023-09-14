@@ -34,25 +34,32 @@ const Cart = () => {
           {cart.map((item) => (
             <div className='cart-items' key={item.id}>
               <img src={item.image} alt='' className='cart-icon' />
-              <section className='details'>
-                <h2 className='name'>{item.text}</h2>
-                <h4> ₹{item.price}</h4>
-                <p className='desc'>{item.details}</p>
-              </section>
-
-              <div className='button-section'>
-                <button className='remove-btn' onClick={() => removeItem(item)}>
-                  Remove
-                </button>
-                <button className='add-btn' onClick={() => increaseItem(item)}>
-                  +
-                </button>
-                <button
-                  className='decrease-btn'
-                  onClick={() => decreaseItem(item)}
-                >
-                  -
-                </button>
+              <div className='cart-products'>
+                <section className='details'>
+                  <h2 className='name'>{item.text}</h2>
+                  <h4> ₹{item.price}</h4>
+                  <p className='desc'>{item.details}</p>
+                </section>
+                <div className='button-section'>
+                  <button
+                    className='remove-btn'
+                    onClick={() => removeItem(item)}
+                  >
+                    Remove
+                  </button>
+                  <button
+                    className='add-btn'
+                    onClick={() => increaseItem(item)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className='decrease-btn'
+                    onClick={() => decreaseItem(item)}
+                  >
+                    -
+                  </button>
+                </div>
               </div>
               <div>
                 <h2 className='quantity'>
