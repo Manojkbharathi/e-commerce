@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 2rem;
+  margin-top: 1.5rem;
 }
 .navbar {
   display: flex;
@@ -21,8 +22,6 @@
 }
 .logo {
   width: 15rem;
-  position: relative;
-  left: -2rem;
 }
 select {
   background-color: rgb(0, 0, 0);

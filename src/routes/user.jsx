@@ -91,7 +91,7 @@ const User = () => {
         setLoading(false);
       }
     } else {
-      console.log('Name or phone number is empty');
+      alert('phone number is mandatory');
     }
   };
 

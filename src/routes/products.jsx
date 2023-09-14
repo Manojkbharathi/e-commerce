@@ -176,7 +176,6 @@ const Products = () => {
                 <div className='single-product' key={id}>
                   <Link to='/camera'>
                     <img src={productImg} alt='' className='product' />
-                    <h4>camera</h4>
                     <p className='product-name'>{name}</p>
                   </Link>
                 </div>
