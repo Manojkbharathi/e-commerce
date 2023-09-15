@@ -134,27 +134,21 @@ const SignUp = () => {
       <div className={`sign-up ${loading ? 'blur' : ''}`}>
         <form onSubmit={handleLogin}>
           <input
-            className='img-input'
-            type='file'
-            accept='image/*'
-            onChange={(e) => setUserImage(e.target.files[0])}
-          />
-          <input
             type='email'
-            placeholder='email'
+            placeholder='Enter your email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type='password'
-            placeholder='password'
+            placeholder='Enter your password'
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className='content'>
             <input
               type='text'
-              placeholder='Your name'
+              placeholder=' Enter Your name'
               value={userName}
               required
               onChange={(e) => setUserName(e.target.value)}
@@ -163,12 +157,20 @@ const SignUp = () => {
           <div className='content'>
             <input
               type='number'
-              placeholder='number'
+              placeholder='Enter your number'
               value={number}
               required
               onChange={(e) => setNumber(e.target.value)}
             />
           </div>
+          <label> Add photo</label>
+          <input
+            className='img-input'
+            type='file'
+            accept='image/*'
+            placeholder='Add photo'
+            onChange={(e) => setUserImage(e.target.files[0])}
+          />
           <button type='submit' className='button'>
             SignUp
           </button>
@@ -188,7 +190,7 @@ const SignUp = () => {
           />
         </div>
       )}
-      <button className='button' onClick={() => navigate('/logIn')}>
+      <button className='button' onClick={() => navigate('/')}>
         Already have an Account? Log in
       </button>
     </div>
