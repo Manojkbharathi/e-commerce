@@ -134,23 +134,6 @@ const User = () => {
           />
 
           <div className={`user-data ${loading ? 'blur' : ''}`}>
-            <div className='img-section'>
-              <input
-                className='img-input'
-                type='file'
-                accept='image/*'
-                onChange={(e) => setUserImage(e.target.files[0])}
-                disabled={!isEditingPhoto}
-              />
-              <button
-                className='button edit'
-                onClick={editPhoto}
-                disabled={!isEditing}
-              >
-                Edit PHoto
-              </button>
-            </div>
-
             <div className='input-container'>
               <div className='input-section'>
                 <input
@@ -181,6 +164,25 @@ const User = () => {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   disabled={!isEditing}
                 />
+              </div>
+              <div className='img-section'>
+                <div>
+                  <label className='label'> Upload Profile picture </label>
+                  <input
+                    className='img-input'
+                    type='file'
+                    accept='image/*'
+                    onChange={(e) => setUserImage(e.target.files[0])}
+                    disabled={!isEditingPhoto}
+                  />
+                </div>
+                <button
+                  className='button edit'
+                  onClick={editPhoto}
+                  disabled={!isEditing}
+                >
+                  Edit PHoto
+                </button>
               </div>
               <div className='input-section'>
                 <div className='profile-gender'>

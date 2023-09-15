@@ -28,7 +28,6 @@
 
 .img-section {
   display: flex;
-  align-items: center;
   margin: 1rem;
   gap: 2rem;
   position: relative;
@@ -47,7 +46,14 @@
   gap: 1rem;
 }
 .edit {
-  background-color: white;
+  background-color: rgb(205, 49, 49);
+  margin-top: 2.5rem;
+}
+.label {
+  color: red;
+}
+.img-input {
+  margin-top: 1rem;
 }
 @media screen and (max-width: 622px) {
   .user-container {
